@@ -46,7 +46,7 @@ If your proposal was accepted, submit it here to help others like you.
    ```
 
 7. **Add your proposal**:
-   - Create a folder named after the organization (e.g., `org_name`) if it doesn't exist.
+   - Create a folder named after the organization if it doesn't exist.
    - Place your proposal PDF inside this folder.
 
 8. **Commit and push your changes**:
@@ -66,7 +66,7 @@ That’s it. Your work could help someone get in next year.
 
 ## Org Submission Checklist
 
-- [x] omgeaUp
+- [x] omegaUp
 
 
 ## Contributors

@@ -11,7 +11,7 @@ This is a community archive of accepted GSoC 2025 proposals. It exists to help f
 
 If your proposal was accepted, submit it here to help others like you.
 
-## 📥 How to Submit
+## How to Submit
 
 1. Fork the repo
 2. Create a folder named after your **organization**
@@ -20,17 +20,17 @@ If your proposal was accepted, submit it here to help others like you.
 
 That’s it. Your work could help someone get in next year.
 
-## ✅ Org Submission Checklist
+## Org Submission Checklist
 
 - [ ] omgeaUp
 
 
-## 🙌 Contributors
+## Contributors
 
 <!-- Add contributors below -->
 - Samman Sarkar
 
-## 📊 Proposal Count
+## Proposal Count
 
 Total proposals submitted: **1**
 

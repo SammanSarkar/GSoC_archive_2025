@@ -71,6 +71,15 @@ That's it. Your work could help someone get in next year.
 - [x] Google DeepMind
 - [x] ML4SCI
 - [x] OSIPI
+- [x] The JPF team
+- [x] The Julia Language
+- [x] drupal
+- [x] omegaUp
+- [x] sympy
+
+- [x] Google DeepMind
+- [x] ML4SCI
+- [x] OSIPI
 - [x] The Julia Language
 - [x] drupal
 - [x] omegaUp
@@ -105,6 +114,6 @@ That's it. Your work could help someone get in next year.
 
 ## Proposal Count
 
-Total proposals submitted: **9**
+Total proposals submitted: **10**
 
 

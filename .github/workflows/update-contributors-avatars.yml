@@ -41,29 +41,40 @@ jobs:
           import re
           import os
           from github import Github
+          
+          # List of usernames to exclude
+          EXCLUDED_USERS = {
+              'github-actions[bot]', 
+              'actions-user', 
+              'github-actions', 
+              'dependabot[bot]',
+              'dependabot-preview[bot]'
+          }
 
           def extract_github_username(line):
               patterns = [
                   r'https://github\.com/([^)/\s]+)',  # Standard GitHub URL
                   r'\[@([^)\s]+)\]',                  # [@username] format
-                  r'\[([^]]+)\]\(https://github\.com/[^)]+\)'  # [name](url) format
+                  r'\[([^]]+)\]\(https://github\.com/([^)]+)\)'  # [name](url) format
               ]
               for pattern in patterns:
                   match = re.search(pattern, line)
                   if match:
-                      return match.group(1)
+                      # If it's the [name](url) format, use group(2), otherwise group(1)
+                      username = match.group(2) if len(match.groups()) > 1 and match.group(2) else match.group(1)
+                      return username
               return None
 
           def create_avatar_section(usernames):
               avatar_html = """<div align="center">
           """
-              for username in usernames:
-                  avatar_html += f'  <a href="https://github.com/{username}"><img src="https://github.com/{username}.png" width="60px" alt="{username}" /></a>\n'
+              for username in sorted(usernames):
+                  if username not in EXCLUDED_USERS:
+                      avatar_html += f'  <a href="https://github.com/{username}"><img src="https://github.com/{username}.png" width="60px" alt="{username}" /></a>\n'
               avatar_html += "</div>\n"
               return avatar_html
 
           def clean_org_list(content):
-              # Find the org checklist section boundaries
               start = content.find("## Org Submission Checklist")
               if start == -1:
                   return content
@@ -75,7 +86,6 @@ jobs:
               org_section = content[start:next_section].strip()
               lines = org_section.split('\n')
               
-              # Get unique org entries while preserving order
               seen = set()
               unique_lines = []
               for line in lines:
@@ -84,7 +94,6 @@ jobs:
                       seen.add(line)
                       unique_lines.append(line)
               
-              # Reconstruct the section
               new_section = "## Org Submission Checklist\n\n" + "\n".join(unique_lines) + "\n\n"
               return content[:start] + new_section + content[next_section:]
 
@@ -95,7 +104,17 @@ jobs:
           # Get all contributors from GitHub
           contributors = set()
           for contributor in repo.get_contributors():
-              contributors.add(contributor.login)
+              username = contributor.login
+              if username not in EXCLUDED_USERS:
+                  contributors.add(username)
+
+          # Add PR author if this is a merged PR
+          if os.getenv('GITHUB_EVENT_NAME') == 'pull_request':
+              pr_number = os.getenv('GITHUB_EVENT_PULL_REQUEST_NUMBER')
+              if pr_number:
+                  pr = repo.get_pull(int(pr_number))
+                  if pr.merged and pr.user.login not in EXCLUDED_USERS:
+                      contributors.add(pr.user.login)
 
           # Read README
           with open('README.md', 'r', encoding='utf-8') as f:
@@ -115,18 +134,22 @@ jobs:
           for line in contributors_section.group(1).split('\n'):
               if line.strip() and line.strip().startswith('-'):
                   username = extract_github_username(line)
-                  if username:
+                  if username and username not in EXCLUDED_USERS:
                       existing_usernames.add(username)
                       existing_lines.append(line)
 
           # Add new contributors from GitHub
           new_lines = []
           for contributor in contributors:
-              if contributor not in existing_usernames:
-                  user = g.get_user(contributor)
-                  name = user.name or contributor
-                  new_lines.append(f"- [{name}](https://github.com/{contributor})")
-                  existing_usernames.add(contributor)
+              if contributor not in existing_usernames and contributor not in EXCLUDED_USERS:
+                  try:
+                      user = g.get_user(contributor)
+                      name = user.name or contributor
+                      new_lines.append(f"- [{name}](https://github.com/{contributor})")
+                      existing_usernames.add(contributor)
+                  except Exception as e:
+                      print(f"Error getting info for {contributor}: {e}")
+                      continue
 
           # Update contributors section if there are new contributors
           if new_lines:
@@ -135,7 +158,7 @@ jobs:
               content = content.replace(contributors_section.group(0), new_section + "\n\n")
 
           # Create and update avatar section
-          avatar_section = create_avatar_section(sorted(existing_usernames))
+          avatar_section = create_avatar_section(existing_usernames)
           avatar_pattern = r'<div align="center">.*?<\/div>\n'
           if re.search(avatar_pattern, content, re.DOTALL):
               content = re.sub(avatar_pattern, avatar_section, content, flags=re.DOTALL)

@@ -80,6 +80,7 @@ That’s it. Your work could help someone get in next year.
 - [Myan V.](https://github.com/myanvoos)
 - [Rajas Samse](https://github.com/ImRAJAS-SAMSE)
 - [Krishnav Bajoria](https://github.com/krishnavbajoria02)
+- [Ritesh Kumar Singh](https://github.com/riteshdavv)
 
 ## Proposal Count
 

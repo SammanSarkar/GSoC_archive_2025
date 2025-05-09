@@ -86,6 +86,11 @@ That's it. Your work could help someone get in next year.
 - [Krishnav Bajoria](https://github.com/krishnavbajoria02)
 - [Ritesh Kumar Singh](https://github.com/riteshdavv)
 
+## Our Amazing Contributors
+
+<div align="center">
+</div>
+
 ## Proposal Count
 
 Total proposals submitted: **7**

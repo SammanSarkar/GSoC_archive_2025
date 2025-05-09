@@ -1,0 +1,101 @@
+name: Update Contributor Avatars
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'README.md'
+
+jobs:
+  update-avatars:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests
+
+      - name: Update README with avatars
+        run: |
+          python - <<EOF
+          import re
+          import requests
+          
+          def extract_github_username(line):
+              # Match GitHub URLs in different formats
+              patterns = [
+                  r'https://github\.com/([^)/\s]+)',  # Standard GitHub URL
+                  r'\[@([^)\s]+)\]',                  # [@username] format
+                  r'\[([^]]+)\]\(https://github\.com/[^)]+\)'  # [name](url) format
+              ]
+              
+              for pattern in patterns:
+                  match = re.search(pattern, line)
+                  if match:
+                      return match.group(1)
+              return None
+          
+          def create_avatar_section(usernames):
+              # Create HTML for avatar grid
+              avatar_html = """
+          ## Our Amazing Contributors
+          
+          <div align="center">
+          """
+              for username in usernames:
+                  avatar_html += f'  <a href="https://github.com/{username}"><img src="https://github.com/{username}.png" width="60px" alt="{username}" /></a>\n'
+              
+              avatar_html += "</div>\n"
+              return avatar_html
+          
+          # Read README
+          with open('README.md', 'r', encoding='utf-8') as f:
+              content = f.read()
+          
+          # Find contributors section
+          contributors_section = re.search(r'<!-- Add contributors below -->(.*?)##', content, re.DOTALL)
+          if not contributors_section:
+              exit(0)
+              
+          # Extract usernames
+          usernames = set()
+          for line in contributors_section.group(1).split('\n'):
+              if line.strip() and line.strip().startswith('-'):
+                  username = extract_github_username(line)
+                  if username:
+                      usernames.add(username)
+          
+          # Create avatar section
+          avatar_section = create_avatar_section(sorted(usernames))
+          
+          # Check if avatar section exists
+          avatar_pattern = r'## Our Amazing Contributors.*?<\/div>\n'
+          if re.search(avatar_pattern, content, re.DOTALL):
+              # Replace existing avatar section
+              content = re.sub(avatar_pattern, avatar_section, content, flags=re.DOTALL)
+          else:
+              # Add avatar section after contributors list
+              content = re.sub(r'(## Contributors.*?)(##)', rf'\1\n{avatar_section}\2', content, flags=re.DOTALL)
+          
+          # Write updated README
+          with open('README.md', 'w', encoding='utf-8') as f:
+              f.write(content)
+          EOF
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update contributor avatars"
+          git push 

@@ -85,7 +85,6 @@ That's it. Your work could help someone get in next year.
 - [Shravan Goswami](https://github.com/shravanngoswamii) (https://shravangoswami.com/posts/GSoC-2025-The-Journey-Begins/)
 - [Krishnav Bajoria](https://github.com/krishnavbajoria02)
 - [Ritesh Kumar Singh](https://github.com/riteshdavv)
-- [actions-user](https://github.com/actions-user)
 
 
 <div align="center">

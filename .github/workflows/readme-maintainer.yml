@@ -1,0 +1,140 @@
+name: README Maintainer
+
+on:
+  pull_request_target:
+    types: [closed]
+  push:
+    branches: [main]
+  schedule:
+    - cron: '0 0 * * *'  # Run daily
+  workflow_dispatch:  # Manual trigger
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch' || github.event_name == 'schedule' || (github.event_name == 'pull_request_target' && github.event.pull_request.merged == true)
+    permissions:
+      contents: write
+      pull-requests: read
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install PyGithub
+
+      - name: Update README
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python - <<EOF
+          import re
+          import os
+          from github import Github
+          
+          def clean_org_list(content):
+              # Extract the org list section
+              org_section = re.search(r'(## Org Submission Checklist\s*\n+)((?:- \[.\][^\n]*\n+)*)', content, re.MULTILINE)
+              if not org_section:
+                  return content
+              
+              # Get unique entries preserving order
+              org_lines = []
+              seen = set()
+              for line in org_section.group(2).splitlines():
+                  line = line.strip()
+                  if line and line.startswith('- [') and line not in seen:
+                      org_lines.append(line)
+                      seen.add(line)
+              
+              # Replace section with clean list
+              new_section = org_section.group(1) + '\n'.join(org_lines) + '\n\n'
+              return content[:org_section.start()] + new_section + content[org_section.end():]
+          
+          def get_contributors():
+              g = Github(os.getenv('GITHUB_TOKEN'))
+              repo = g.get_repo(os.getenv('GITHUB_REPOSITORY'))
+              
+              # Get all contributors
+              contributors = set()
+              for contributor in repo.get_contributors():
+                  if not any(bot in contributor.login.lower() for bot in ['[bot]', 'actions-user', 'dependabot']):
+                      contributors.add((contributor.login, contributor.name or contributor.login))
+              
+              # Add PR author if this is a merged PR
+              if os.getenv('GITHUB_EVENT_NAME') == 'pull_request_target':
+                  pr_number = os.getenv('GITHUB_EVENT_NUMBER')
+                  if pr_number:
+                      pr = repo.get_pull(int(pr_number))
+                      if pr.merged and not any(bot in pr.user.login.lower() for bot in ['[bot]', 'actions-user', 'dependabot']):
+                          contributors.add((pr.user.login, pr.user.name or pr.user.login))
+              
+              return contributors
+          
+          def update_contributors_section(content, contributors):
+              # Find contributors section
+              contrib_match = re.search(r'(## Contributors\s*\n+<!-- Add contributors below -->)(.*?)(\n+##)', content, re.DOTALL)
+              if not contrib_match:
+                  return content
+              
+              # Build new contributors list
+              contrib_lines = []
+              for username, name in sorted(contributors, key=lambda x: x[1].lower()):
+                  contrib_lines.append(f"- [{name}](https://github.com/{username})")
+              
+              # Build avatar section
+              avatar_html = "<div align=\"center\">\n"
+              for username, _ in sorted(contributors):
+                  avatar_html += f'  <a href="https://github.com/{username}"><img src="https://github.com/{username}.png" width="60px" alt="{username}" /></a>\n'
+              avatar_html += "</div>\n\n"
+              
+              # Replace section
+              new_section = (
+                  contrib_match.group(1) + '\n' +
+                  '\n'.join(contrib_lines) + '\n\n' +
+                  avatar_html
+              )
+              return content[:contrib_match.start()] + new_section + content[contrib_match.end()-1:]
+          
+          # Read current README
+          with open('README.md', 'r', encoding='utf-8') as f:
+              content = f.read()
+          
+          # Clean org list
+          content = clean_org_list(content)
+          
+          # Update contributors
+          contributors = get_contributors()
+          content = update_contributors_section(content, contributors)
+          
+          # Ensure consistent spacing before sections
+          content = re.sub(r'\n{3,}##', r'\n\n##', content)
+          
+          # Write updated README
+          with open('README.md', 'w', encoding='utf-8') as f:
+              f.write(content)
+          EOF
+
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git diff --quiet && git diff --staged --quiet || (
+            if [[ "${{ github.event_name }}" == "pull_request_target" ]]; then
+              git commit -m "Update README after PR merge"
+            else
+              git commit -m "Update README organization list and contributors"
+            fi
+            git push
+          ) 

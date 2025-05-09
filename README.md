@@ -78,15 +78,6 @@ That's it. Your work could help someone get in next year.
 - [x] sympy
 
 
-- [x] Google DeepMind
-- [x] ML4SCI
-- [x] OSIPI
-- [x] The Julia Language
-- [x] drupal
-- [x] omegaUp
-
-
-
 ## Contributors
 
 <!-- Add contributors below -->

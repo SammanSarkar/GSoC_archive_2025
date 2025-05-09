@@ -85,11 +85,13 @@ That's it. Your work could help someone get in next year.
 - [Shravan Goswami](https://github.com/shravanngoswamii) (https://shravangoswami.com/posts/GSoC-2025-The-Journey-Begins/)
 - [Krishnav Bajoria](https://github.com/krishnavbajoria02)
 - [Ritesh Kumar Singh](https://github.com/riteshdavv)
+- [actions-user](https://github.com/actions-user)
 
 
 <div align="center">
   <a href="https://github.com/ImRAJAS-SAMSE"><img src="https://github.com/ImRAJAS-SAMSE.png" width="60px" alt="ImRAJAS-SAMSE" /></a>
   <a href="https://github.com/SammanSarkar"><img src="https://github.com/SammanSarkar.png" width="60px" alt="SammanSarkar" /></a>
+  <a href="https://github.com/actions-user"><img src="https://github.com/actions-user.png" width="60px" alt="actions-user" /></a>
   <a href="https://github.com/heilcheng"><img src="https://github.com/heilcheng.png" width="60px" alt="heilcheng" /></a>
   <a href="https://github.com/krishnavbajoria02"><img src="https://github.com/krishnavbajoria02.png" width="60px" alt="krishnavbajoria02" /></a>
   <a href="https://github.com/myanvoos"><img src="https://github.com/myanvoos.png" width="60px" alt="myanvoos" /></a>

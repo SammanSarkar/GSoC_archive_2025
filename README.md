@@ -68,6 +68,7 @@ That’s it. Your work could help someone get in next year.
 
 - [x] omegaUp
 - [x] DeepMind
+- [x] Drupal
 
 
 ## Contributors
@@ -76,10 +77,11 @@ That’s it. Your work could help someone get in next year.
 - [Samman Sarkar](https://github.com/SammanSarkar)
 - [@halx](https://github.com/heilcheng) (https://github.com/heilcheng/2025-GSoC-Proposal-Selected)
 - [Myan V.](https://github.com/myanvoos)
+- [Rajas Samse](https://github.com/ImRAJAS-SAMSE)
 
 ## Proposal Count
 
-Total proposals submitted: **3**
+Total proposals submitted: **4**
 
 ---
 

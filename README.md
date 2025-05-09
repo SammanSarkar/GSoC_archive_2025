@@ -69,6 +69,7 @@ That’s it. Your work could help someone get in next year.
 - [x] omegaUp
 - [x] DeepMind
 - [x] Drupal
+- [x] The Julia Language
 
 
 ## Contributors
@@ -78,6 +79,7 @@ That’s it. Your work could help someone get in next year.
 - [@halx](https://github.com/heilcheng) (https://github.com/heilcheng/2025-GSoC-Proposal-Selected)
 - [Myan V.](https://github.com/myanvoos)
 - [Rajas Samse](https://github.com/ImRAJAS-SAMSE)
+- [Shravan Goswami](https://github.com/shravanngoswamii) (https://shravangoswami.com/posts/GSoC-2025-The-Journey-Begins/)
 
 ## Proposal Count
 

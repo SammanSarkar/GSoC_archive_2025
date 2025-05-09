@@ -1,4 +1,4 @@
-name: Update Contributor Avatars
+name: Update Contributor Avatars and Org List
 
 on:
   pull_request:
@@ -6,13 +6,11 @@ on:
     branches: [ main ]
   push:
     branches: [ main ]
-    paths:
-      - 'README.md'
   schedule:
     - cron: '0 0 * * *'  # Run daily to check for new contributors
 
 jobs:
-  update-avatars:
+  update-readme:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true || github.event_name == 'push' || github.event_name == 'schedule'
     permissions:
@@ -33,7 +31,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests PyGithub
 
-      - name: Update README with avatars
+      - name: Update README
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -42,7 +40,6 @@ jobs:
           import os
           from github import Github
           
-          # List of usernames to exclude
           EXCLUDED_USERS = {
               'github-actions[bot]', 
               'actions-user', 
@@ -53,14 +50,13 @@ jobs:
 
           def extract_github_username(line):
               patterns = [
-                  r'https://github\.com/([^)/\s]+)',  # Standard GitHub URL
-                  r'\[@([^)\s]+)\]',                  # [@username] format
-                  r'\[([^]]+)\]\(https://github\.com/([^)]+)\)'  # [name](url) format
+                  r'https://github\.com/([^)/\s]+)',
+                  r'\[@([^)\s]+)\]',
+                  r'\[([^]]+)\]\(https://github\.com/([^)]+)\)'
               ]
               for pattern in patterns:
                   match = re.search(pattern, line)
                   if match:
-                      # If it's the [name](url) format, use group(2), otherwise group(1)
                       username = match.group(2) if len(match.groups()) > 1 and match.group(2) else match.group(1)
                       return username
               return None
@@ -75,27 +71,24 @@ jobs:
               return avatar_html
 
           def clean_org_list(content):
-              start = content.find("## Org Submission Checklist")
-              if start == -1:
+              # Find the org section
+              org_match = re.search(r'(## Org Submission Checklist\n\n)((?:- \[.\].*\n)*)', content, re.MULTILINE)
+              if not org_match:
                   return content
-              
-              next_section = content.find("##", start + 10)
-              if next_section == -1:
-                  return content
-                  
-              org_section = content[start:next_section].strip()
-              lines = org_section.split('\n')
-              
+
+              # Get unique org entries while preserving order
+              org_lines = org_match.group(2).strip().split('\n')
               seen = set()
               unique_lines = []
-              for line in lines:
+              for line in org_lines:
                   line = line.strip()
-                  if line and line not in seen and line.startswith('- ['):
+                  if line and line.startswith('- [') and line not in seen:
                       seen.add(line)
                       unique_lines.append(line)
-              
-              new_section = "## Org Submission Checklist\n\n" + "\n".join(unique_lines) + "\n\n"
-              return content[:start] + new_section + content[next_section:]
+
+              # Replace the org section with unique entries
+              new_org_section = org_match.group(1) + '\n'.join(unique_lines) + '\n\n'
+              return content[:org_match.start()] + new_org_section + content[org_match.end():]
 
           # Initialize GitHub API
           g = Github(os.getenv('GITHUB_TOKEN'))
@@ -116,19 +109,20 @@ jobs:
                   if pr.merged and pr.user.login not in EXCLUDED_USERS:
                       contributors.add(pr.user.login)
 
-          # Read README
+          # Read and clean README content
           with open('README.md', 'r', encoding='utf-8') as f:
               content = f.read()
 
-          # Clean up duplicate orgs
+          # First, clean up the org list
           content = clean_org_list(content)
 
-          # Find contributors section
-          contributors_section = re.search(r'<!-- Add contributors below -->(.*?)\n\n', content, re.DOTALL)
+          # Then handle contributors section
+          contributors_section = re.search(r'(<!-- Add contributors below -->.*?)(?=\n\n##|\Z)', content, re.DOTALL)
           if not contributors_section:
-              exit(0)
+              print("Contributors section not found")
+              exit(1)
 
-          # Get existing contributors from README
+          # Get existing contributors
           existing_usernames = set()
           existing_lines = []
           for line in contributors_section.group(1).split('\n'):
@@ -138,7 +132,7 @@ jobs:
                       existing_usernames.add(username)
                       existing_lines.append(line)
 
-          # Add new contributors from GitHub
+          # Add new contributors
           new_lines = []
           for contributor in contributors:
               if contributor not in existing_usernames and contributor not in EXCLUDED_USERS:
@@ -151,13 +145,13 @@ jobs:
                       print(f"Error getting info for {contributor}: {e}")
                       continue
 
-          # Update contributors section if there are new contributors
+          # Update contributors section if there are changes
           if new_lines:
               all_lines = existing_lines + new_lines
               new_section = "<!-- Add contributors below -->\n" + "\n".join(all_lines)
               content = content.replace(contributors_section.group(0), new_section + "\n\n")
 
-          # Create and update avatar section
+          # Update avatar section
           avatar_section = create_avatar_section(existing_usernames)
           avatar_pattern = r'<div align="center">.*?<\/div>\n'
           if re.search(avatar_pattern, content, re.DOTALL):
@@ -177,11 +171,11 @@ jobs:
           git add README.md
           git diff --quiet && git diff --staged --quiet || (
             if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-              git commit -m "Update README with new contributor ${{ github.event.pull_request.user.login }}"
+              git commit -m "Update README with new contributor ${{ github.event.pull_request.user.login }} and clean up org list"
             elif [[ "${{ github.event_name }}" == "schedule" ]]; then
-              git commit -m "Update README with new contributors from repository"
+              git commit -m "Update README with new contributors and clean up org list"
             else
-              git commit -m "Update README and clean up org list"
+              git commit -m "Update README organization list and contributors"
             fi
           )
           git push 

@@ -70,6 +70,7 @@ That’s it. Your work could help someone get in next year.
 - [x] DeepMind
 - [x] Drupal
 - [x] The Julia Language
+- [x] sympy
 
 
 ## Contributors
@@ -80,10 +81,11 @@ That’s it. Your work could help someone get in next year.
 - [Myan V.](https://github.com/myanvoos)
 - [Rajas Samse](https://github.com/ImRAJAS-SAMSE)
 - [Shravan Goswami](https://github.com/shravanngoswamii) (https://shravangoswami.com/posts/GSoC-2025-The-Journey-Begins/)
+- [Krishnav Bajoria](https://github.com/krishnavbajoria02)
 
 ## Proposal Count
 
-Total proposals submitted: **4**
+Total proposals submitted: **6**
 
 ---
 

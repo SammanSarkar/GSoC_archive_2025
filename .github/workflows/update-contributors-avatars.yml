@@ -48,8 +48,6 @@ jobs:
           def create_avatar_section(usernames):
               # Create HTML for avatar grid
               avatar_html = """
-          ## Our Amazing Contributors
-          
           <div align="center">
           """
               for username in usernames:
@@ -79,13 +77,13 @@ jobs:
           avatar_section = create_avatar_section(sorted(usernames))
           
           # Check if avatar section exists
-          avatar_pattern = r'## Our Amazing Contributors.*?<\/div>\n'
+          avatar_pattern = r'<div align="center">.*?<\/div>\n'
           if re.search(avatar_pattern, content, re.DOTALL):
               # Replace existing avatar section
               content = re.sub(avatar_pattern, avatar_section, content, flags=re.DOTALL)
           else:
-              # Add avatar section after contributors list
-              content = re.sub(r'(## Contributors.*?)(##)', rf'\1\n{avatar_section}\2', content, flags=re.DOTALL)
+              # Add avatar section after contributors list but before next section
+              content = re.sub(r'(<!-- Add contributors below -->.*?\n)\n*(##)', r'\1\n' + avatar_section + r'\2', content, flags=re.DOTALL)
           
           # Write updated README
           with open('README.md', 'w', encoding='utf-8') as f:

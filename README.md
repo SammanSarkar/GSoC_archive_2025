@@ -105,6 +105,7 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/riteshdavv"><img src="https://github.com/riteshdavv.png" width="60px" alt="riteshdavv" /></a>
   <a href="https://github.com/shravanngoswamii"><img src="https://github.com/shravanngoswamii.png" width="60px" alt="shravanngoswamii" /></a>
 </div>
+
 ## Proposal Count
 
 Total proposals submitted: **10**

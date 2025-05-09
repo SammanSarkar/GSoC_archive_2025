@@ -8,12 +8,13 @@ on:
     branches: [ main ]
     paths:
       - 'README.md'
+  schedule:
+    - cron: '0 0 * * *'  # Run daily to check for new contributors
 
 jobs:
   update-avatars:
     runs-on: ubuntu-latest
-    # Run this job if it's a direct push to main or if the PR was merged
-    if: github.event.pull_request.merged == true || github.event_name == 'push'
+    if: github.event.pull_request.merged == true || github.event_name == 'push' || github.event_name == 'schedule'
     permissions:
       contents: write
     
@@ -30,97 +31,117 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests
+          pip install requests PyGithub
 
       - name: Update README with avatars
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           python - <<EOF
           import re
-          import requests
-          
+          import os
+          from github import Github
+
           def extract_github_username(line):
-              # Match GitHub URLs in different formats
               patterns = [
                   r'https://github\.com/([^)/\s]+)',  # Standard GitHub URL
                   r'\[@([^)\s]+)\]',                  # [@username] format
                   r'\[([^]]+)\]\(https://github\.com/[^)]+\)'  # [name](url) format
               ]
-              
               for pattern in patterns:
                   match = re.search(pattern, line)
                   if match:
                       return match.group(1)
               return None
-          
+
           def create_avatar_section(usernames):
-              # Create HTML for avatar grid
               avatar_html = """<div align="center">
           """
               for username in usernames:
                   avatar_html += f'  <a href="https://github.com/{username}"><img src="https://github.com/{username}.png" width="60px" alt="{username}" /></a>\n'
-              
               avatar_html += "</div>\n"
               return avatar_html
-          
+
           def clean_org_list(content):
-              # Find the org checklist section
-              org_section = re.search(r'## Org Submission Checklist\n\n(.*?)\n\n', content, re.DOTALL)
-              if not org_section:
+              # Find the org checklist section boundaries
+              start = content.find("## Org Submission Checklist")
+              if start == -1:
+                  return content
+              
+              next_section = content.find("##", start + 10)
+              if next_section == -1:
                   return content
                   
-              # Get unique org entries, maintaining order
-              seen = set()
-              unique_orgs = []
-              for line in org_section.group(1).split('\n'):
-                  line = line.strip()
-                  if line and line not in seen:
-                      seen.add(line)
-                      unique_orgs.append(line)
+              org_section = content[start:next_section].strip()
+              lines = org_section.split('\n')
               
-              # Replace section with unique entries
-              new_section = "## Org Submission Checklist\n\n" + "\n".join(unique_orgs) + "\n\n"
-              return content.replace(org_section.group(0), new_section)
-          
+              # Get unique org entries while preserving order
+              seen = set()
+              unique_lines = []
+              for line in lines:
+                  line = line.strip()
+                  if line and line not in seen and line.startswith('- ['):
+                      seen.add(line)
+                      unique_lines.append(line)
+              
+              # Reconstruct the section
+              new_section = "## Org Submission Checklist\n\n" + "\n".join(unique_lines) + "\n\n"
+              return content[:start] + new_section + content[next_section:]
+
+          # Initialize GitHub API
+          g = Github(os.getenv('GITHUB_TOKEN'))
+          repo = g.get_repo(os.getenv('GITHUB_REPOSITORY'))
+
+          # Get all contributors from GitHub
+          contributors = set()
+          for contributor in repo.get_contributors():
+              contributors.add(contributor.login)
+
           # Read README
           with open('README.md', 'r', encoding='utf-8') as f:
               content = f.read()
-          
+
           # Clean up duplicate orgs
           content = clean_org_list(content)
-          
+
           # Find contributors section
           contributors_section = re.search(r'<!-- Add contributors below -->(.*?)\n\n', content, re.DOTALL)
           if not contributors_section:
               exit(0)
-              
-          # Extract usernames
-          usernames = set()
+
+          # Get existing contributors from README
+          existing_usernames = set()
+          existing_lines = []
           for line in contributors_section.group(1).split('\n'):
               if line.strip() and line.strip().startswith('-'):
                   username = extract_github_username(line)
                   if username:
-                      usernames.add(username)
-          
-          # Add new contributor if this is a merged PR
-          if "${{ github.event_name }}" == "pull_request":
-              pr_username = "${{ github.event.pull_request.user.login }}"
-              if pr_username and pr_username not in usernames:
-                  usernames.add(pr_username)
-                  pr_name = "${{ github.event.pull_request.user.name }}" or pr_username
-                  new_contributor = f"- [{pr_name}](https://github.com/{pr_username})"
-                  content = content.replace("<!-- Add contributors below -->", f"<!-- Add contributors below -->\n{new_contributor}")
-          
-          # Create avatar section
-          avatar_section = create_avatar_section(sorted(usernames))
-          
-          # Check if avatar section exists and replace it
+                      existing_usernames.add(username)
+                      existing_lines.append(line)
+
+          # Add new contributors from GitHub
+          new_lines = []
+          for contributor in contributors:
+              if contributor not in existing_usernames:
+                  user = g.get_user(contributor)
+                  name = user.name or contributor
+                  new_lines.append(f"- [{name}](https://github.com/{contributor})")
+                  existing_usernames.add(contributor)
+
+          # Update contributors section if there are new contributors
+          if new_lines:
+              all_lines = existing_lines + new_lines
+              new_section = "<!-- Add contributors below -->\n" + "\n".join(all_lines)
+              content = content.replace(contributors_section.group(0), new_section + "\n\n")
+
+          # Create and update avatar section
+          avatar_section = create_avatar_section(sorted(existing_usernames))
           avatar_pattern = r'<div align="center">.*?<\/div>\n'
           if re.search(avatar_pattern, content, re.DOTALL):
               content = re.sub(avatar_pattern, avatar_section, content, flags=re.DOTALL)
           else:
-              # Add avatar section after contributors list but before next section
               content = re.sub(r'(<!-- Add contributors below -->.*?\n)\n*(##)', r'\1\n' + avatar_section + r'\2', content, flags=re.DOTALL)
-          
+
           # Write updated README
           with open('README.md', 'w', encoding='utf-8') as f:
               f.write(content)
@@ -134,6 +155,8 @@ jobs:
           git diff --quiet && git diff --staged --quiet || (
             if [[ "${{ github.event_name }}" == "pull_request" ]]; then
               git commit -m "Update README with new contributor ${{ github.event.pull_request.user.login }}"
+            elif [[ "${{ github.event_name }}" == "schedule" ]]; then
+              git commit -m "Update README with new contributors from repository"
             else
               git commit -m "Update README and clean up org list"
             fi

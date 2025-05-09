@@ -76,6 +76,7 @@ That's it. Your work could help someone get in next year.
 - [x] omegaUp
 - [x] sympy
 
+
 ## Contributors
 
 <!-- Add contributors below -->
@@ -87,9 +88,10 @@ That's it. Your work could help someone get in next year.
 - [Krishnav Bajoria](https://github.com/krishnavbajoria02)
 - [Ritesh Kumar Singh](https://github.com/riteshdavv)
 - [Hamees Sayed](https://github.com/hamees-sayed)
-
+- [Ibrahim](https://github.com/1brahimmohamed)
 
 <div align="center">
+  <a href="https://github.com/1brahimmohamed"><img src="https://github.com/1brahimmohamed.png" width="60px" alt="1brahimmohamed" /></a>
   <a href="https://github.com/ImRAJAS-SAMSE"><img src="https://github.com/ImRAJAS-SAMSE.png" width="60px" alt="ImRAJAS-SAMSE" /></a>
   <a href="https://github.com/SammanSarkar"><img src="https://github.com/SammanSarkar.png" width="60px" alt="SammanSarkar" /></a>
   <a href="https://github.com/hamees-sayed"><img src="https://github.com/hamees-sayed.png" width="60px" alt="hamees-sayed" /></a>
@@ -99,7 +101,6 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/riteshdavv"><img src="https://github.com/riteshdavv.png" width="60px" alt="riteshdavv" /></a>
   <a href="https://github.com/shravanngoswamii"><img src="https://github.com/shravanngoswamii.png" width="60px" alt="shravanngoswamii" /></a>
 </div>
-
 ## Proposal Count
 
 Total proposals submitted: **9**

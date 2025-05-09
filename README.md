@@ -83,7 +83,6 @@ That's it. Your work could help someone get in next year.
 - [x] The Julia Language
 - [x] drupal
 - [x] omegaUp
-- [x] sympy
 
 
 

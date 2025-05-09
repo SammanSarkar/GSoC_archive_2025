@@ -1,6 +1,9 @@
 name: Update Contributor Avatars
 
 on:
+  pull_request:
+    types: [closed]
+    branches: [ main ]
   push:
     branches: [ main ]
     paths:
@@ -9,11 +12,15 @@ on:
 jobs:
   update-avatars:
     runs-on: ubuntu-latest
+    # Run this job if it's a direct push to main or if the PR was merged
+    if: github.event.pull_request.merged == true || github.event_name == 'push'
     permissions:
       contents: write
     
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -47,8 +54,7 @@ jobs:
           
           def create_avatar_section(usernames):
               # Create HTML for avatar grid
-              avatar_html = """
-          <div align="center">
+              avatar_html = """<div align="center">
           """
               for username in usernames:
                   avatar_html += f'  <a href="https://github.com/{username}"><img src="https://github.com/{username}.png" width="60px" alt="{username}" /></a>\n'
@@ -56,12 +62,34 @@ jobs:
               avatar_html += "</div>\n"
               return avatar_html
           
+          def clean_org_list(content):
+              # Find the org checklist section
+              org_section = re.search(r'## Org Submission Checklist\n\n(.*?)\n\n', content, re.DOTALL)
+              if not org_section:
+                  return content
+                  
+              # Get unique org entries, maintaining order
+              seen = set()
+              unique_orgs = []
+              for line in org_section.group(1).split('\n'):
+                  line = line.strip()
+                  if line and line not in seen:
+                      seen.add(line)
+                      unique_orgs.append(line)
+              
+              # Replace section with unique entries
+              new_section = "## Org Submission Checklist\n\n" + "\n".join(unique_orgs) + "\n\n"
+              return content.replace(org_section.group(0), new_section)
+          
           # Read README
           with open('README.md', 'r', encoding='utf-8') as f:
               content = f.read()
           
+          # Clean up duplicate orgs
+          content = clean_org_list(content)
+          
           # Find contributors section
-          contributors_section = re.search(r'<!-- Add contributors below -->(.*?)##', content, re.DOTALL)
+          contributors_section = re.search(r'<!-- Add contributors below -->(.*?)\n\n', content, re.DOTALL)
           if not contributors_section:
               exit(0)
               
@@ -73,13 +101,21 @@ jobs:
                   if username:
                       usernames.add(username)
           
+          # Add new contributor if this is a merged PR
+          if "${{ github.event_name }}" == "pull_request":
+              pr_username = "${{ github.event.pull_request.user.login }}"
+              if pr_username and pr_username not in usernames:
+                  usernames.add(pr_username)
+                  pr_name = "${{ github.event.pull_request.user.name }}" or pr_username
+                  new_contributor = f"- [{pr_name}](https://github.com/{pr_username})"
+                  content = content.replace("<!-- Add contributors below -->", f"<!-- Add contributors below -->\n{new_contributor}")
+          
           # Create avatar section
           avatar_section = create_avatar_section(sorted(usernames))
           
-          # Check if avatar section exists
+          # Check if avatar section exists and replace it
           avatar_pattern = r'<div align="center">.*?<\/div>\n'
           if re.search(avatar_pattern, content, re.DOTALL):
-              # Replace existing avatar section
               content = re.sub(avatar_pattern, avatar_section, content, flags=re.DOTALL)
           else:
               # Add avatar section after contributors list but before next section
@@ -95,5 +131,11 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add README.md
-          git diff --quiet && git diff --staged --quiet || git commit -m "Update contributor avatars"
+          git diff --quiet && git diff --staged --quiet || (
+            if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+              git commit -m "Update README with new contributor ${{ github.event.pull_request.user.login }}"
+            else
+              git commit -m "Update README and clean up org list"
+            fi
+          )
           git push 

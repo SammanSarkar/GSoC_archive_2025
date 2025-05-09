@@ -13,7 +13,6 @@ This is a community archive of accepted GSoC 2025 proposals. It exists to help f
 
 If your proposal was accepted, submit it here to help others like you.
 
-
 ## Contributing a Proposal
 
 1. **Fork this repository** using the "Fork" button at the top right.
@@ -77,35 +76,18 @@ That's it. Your work could help someone get in next year.
 - [x] omegaUp
 - [x] sympy
 
-
-- [x] Google DeepMind
-- [x] ML4SCI
-- [x] OSIPI
-- [x] The JPF team
-- [x] The Julia Language
-- [x] drupal
-- [x] omegaUp
-- [x] sympy
-
-
-
-
-
-
-
 ## Contributors
 
 <!-- Add contributors below -->
-- [Samman Sarkar](https://github.com/SammanSarkar)
-- [@halx](https://github.com/heilcheng) (https://github.com/heilcheng/2025-GSoC-Proposal-Selected)
-- [Myan V.](https://github.com/myanvoos)
-- [Rajas Samse](https://github.com/ImRAJAS-SAMSE)
-- [Shravan Goswami](https://github.com/shravanngoswamii) (https://shravangoswami.com/posts/GSoC-2025-The-Journey-Begins/)
-- [Krishnav Bajoria](https://github.com/krishnavbajoria02)
-- [Ritesh Kumar Singh](https://github.com/riteshdavv)
+- [@halx](https://github.com/heilcheng)
 - [Hamees Sayed](https://github.com/hamees-sayed)
 - [Ibrahim](https://github.com/1brahimmohamed)
+- [Krishnav Bajoria](https://github.com/krishnavbajoria02)
+- [Myan V.](https://github.com/myanvoos)
+- [Rajas Samse](https://github.com/ImRAJAS-SAMSE)
 - [Rehan Chalana](https://github.com/RehanChalana)
+- [Samman Sarkar](https://github.com/SammanSarkar)
+- [Shravan Goswami](https://github.com/shravanngoswamii)
 
 <div align="center">
   <a href="https://github.com/1brahimmohamed"><img src="https://github.com/1brahimmohamed.png" width="60px" alt="1brahimmohamed" /></a>
@@ -116,11 +98,10 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/heilcheng"><img src="https://github.com/heilcheng.png" width="60px" alt="heilcheng" /></a>
   <a href="https://github.com/krishnavbajoria02"><img src="https://github.com/krishnavbajoria02.png" width="60px" alt="krishnavbajoria02" /></a>
   <a href="https://github.com/myanvoos"><img src="https://github.com/myanvoos.png" width="60px" alt="myanvoos" /></a>
-  <a href="https://github.com/riteshdavv"><img src="https://github.com/riteshdavv.png" width="60px" alt="riteshdavv" /></a>
   <a href="https://github.com/shravanngoswamii"><img src="https://github.com/shravanngoswamii.png" width="60px" alt="shravanngoswamii" /></a>
 </div>
 
-## Proposal Count
+# Proposal Count
 
 Total proposals submitted: **11**
 

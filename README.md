@@ -86,7 +86,7 @@ That’s it. Your work could help someone get in next year.
 
 ## Proposal Count
 
-Total proposals submitted: **6**
+Total proposals submitted: **7**
 
 ---
 

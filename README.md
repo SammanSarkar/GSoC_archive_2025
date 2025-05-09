@@ -88,6 +88,4 @@ That’s it. Your work could help someone get in next year.
 
 Total proposals submitted: **7**
 
----
 
-Licensed under [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/).

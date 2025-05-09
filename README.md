@@ -85,9 +85,11 @@ That's it. Your work could help someone get in next year.
 - [Krishnav Bajoria](https://github.com/krishnavbajoria02)
 - [Myan V.](https://github.com/myanvoos)
 - [Rajas Samse](https://github.com/ImRAJAS-SAMSE)
+- [Ritesh Kumar Singh](https://github.com/riteshdavv)
 - [Rehan Chalana](https://github.com/RehanChalana)
 - [Samman Sarkar](https://github.com/SammanSarkar)
 - [Shravan Goswami](https://github.com/shravanngoswamii)
+- 
 
 <div align="center">
   <a href="https://github.com/1brahimmohamed"><img src="https://github.com/1brahimmohamed.png" width="60px" alt="1brahimmohamed" /></a>

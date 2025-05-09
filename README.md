@@ -5,6 +5,8 @@
 </p>
 <p align="center"><b>Community archive of accepted GSoC 2025 proposals for reference and inspiration.</b></p>
 
+> **Note**: This README is automatically updated! The proposal count, organization list, and contributors are maintained by GitHub Actions whenever new proposals are added or PRs are merged.
+
 # GSoC 2025 Accepted Proposals Archive
 
 This is a community archive of accepted GSoC 2025 proposals. It exists to help future contributors see real, successful proposals and learn from them.
@@ -62,7 +64,7 @@ If your proposal was accepted, submit it here to help others like you.
    - Click the "Compare & pull request" button for your branch.
    - Submit the pull request.
 
-That’s it. Your work could help someone get in next year.
+That's it. Your work could help someone get in next year.
 
 ## Org Submission Checklist
 

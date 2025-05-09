@@ -1,11 +1,12 @@
 name: Update Proposal Count, Orgs and Contributors
 
 on:
+  workflow_dispatch:  # Manual trigger
   push:
     branches: [ main ]
     paths:
       - '**/*.pdf'
-      - '*/*'  # Trigger on new directory creation
+      - '*/'
       - '.github/workflows/update-proposal-count.yml'
   pull_request:
     types: [closed]

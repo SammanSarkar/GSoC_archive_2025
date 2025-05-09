@@ -74,7 +74,7 @@ That’s it. Your work could help someone get in next year.
 
 <!-- Add contributors below -->
 - [Samman Sarkar](https://github.com/SammanSarkar)
-- [@halx](https://github.com/heilcheng)
+- [@halx](https://github.com/heilcheng) (https://github.com/heilcheng/2025-GSoC-Proposal-Selected)
 - [Myan V.](https://github.com/myanvoos)
 
 ## Proposal Count

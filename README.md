@@ -87,7 +87,6 @@ That's it. Your work could help someone get in next year.
 - [Ritesh Kumar Singh](https://github.com/riteshdavv)
 
 
-## Our Amazing Contributors
 
 <div align="center">
   <a href="https://github.com/ImRAJAS-SAMSE"><img src="https://github.com/ImRAJAS-SAMSE.png" width="60px" alt="ImRAJAS-SAMSE" /></a>

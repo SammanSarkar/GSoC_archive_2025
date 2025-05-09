@@ -42,6 +42,11 @@ jobs:
           import os
           from github import Github
           
+          # Hardcoded contributors to always keep
+          PRESERVED_CONTRIBUTORS = {
+              'riteshdavv': ('Ritesh Kumar Singh', 'https://github.com/riteshdavv')
+          }
+          
           def clean_org_list(content):
               # Extract the org list section
               org_section = re.search(r'(## Org Submission Checklist\s*\n+)((?:- \[.\][^\n]*\n+)*)', content, re.MULTILINE)
@@ -65,19 +70,35 @@ jobs:
               g = Github(os.getenv('GITHUB_TOKEN'))
               repo = g.get_repo(os.getenv('GITHUB_REPOSITORY'))
               
-              # Get all contributors
-              contributors = set()
-              for contributor in repo.get_contributors():
-                  if not any(bot in contributor.login.lower() for bot in ['[bot]', 'actions-user', 'dependabot']):
-                      contributors.add((contributor.login, contributor.name or contributor.login))
+              # Start with preserved contributors
+              contributors = {username: (name, url) for username, (name, url) in PRESERVED_CONTRIBUTORS.items()}
+              
+              # Get all contributors from GitHub
+              try:
+                  for contributor in repo.get_contributors():
+                      username = contributor.login.lower()
+                      if not any(bot in username for bot in ['[bot]', 'actions-user', 'dependabot']):
+                          contributors[username] = (
+                              contributor.name or contributor.login,
+                              f'https://github.com/{contributor.login}'
+                          )
+              except Exception as e:
+                  print(f"Error getting contributors: {e}")
               
               # Add PR author if this is a merged PR
               if os.getenv('GITHUB_EVENT_NAME') == 'pull_request_target':
-                  pr_number = os.getenv('GITHUB_EVENT_NUMBER')
-                  if pr_number:
-                      pr = repo.get_pull(int(pr_number))
-                      if pr.merged and not any(bot in pr.user.login.lower() for bot in ['[bot]', 'actions-user', 'dependabot']):
-                          contributors.add((pr.user.login, pr.user.name or pr.user.login))
+                  try:
+                      pr_number = os.getenv('GITHUB_EVENT_PULL_REQUEST_NUMBER')
+                      if pr_number:
+                          pr = repo.get_pull(int(pr_number))
+                          if pr.merged and not any(bot in pr.user.login.lower() for bot in ['[bot]', 'actions-user', 'dependabot']):
+                              username = pr.user.login.lower()
+                              contributors[username] = (
+                                  pr.user.name or pr.user.login,
+                                  f'https://github.com/{pr.user.login}'
+                              )
+                  except Exception as e:
+                      print(f"Error processing PR author: {e}")
               
               return contributors
           
@@ -89,13 +110,14 @@ jobs:
               
               # Build new contributors list
               contrib_lines = []
-              for username, name in sorted(contributors, key=lambda x: x[1].lower()):
-                  contrib_lines.append(f"- [{name}](https://github.com/{username})")
+              for username, (name, url) in sorted(contributors.items(), key=lambda x: x[1][0].lower()):
+                  contrib_lines.append(f"- [{name}]({url})")
               
               # Build avatar section
               avatar_html = "<div align=\"center\">\n"
-              for username, _ in sorted(contributors):
-                  avatar_html += f'  <a href="https://github.com/{username}"><img src="https://github.com/{username}.png" width="60px" alt="{username}" /></a>\n'
+              for username, (_, url) in sorted(contributors.items()):
+                  github_username = url.split('/')[-1]
+                  avatar_html += f'  <a href="{url}"><img src="https://github.com/{github_username}.png" width="60px" alt="{github_username}" /></a>\n'
               avatar_html += "</div>\n\n"
               
               # Replace section

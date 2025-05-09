@@ -69,6 +69,13 @@ That's it. Your work could help someone get in next year.
 ## Org Submission Checklist
 
 - [x] Google DeepMind
+- [x] ML4SCI
+- [x] The Julia Language
+- [x] drupal
+- [x] omegaUp
+- [x] sympy
+
+- [x] Google DeepMind
 - [x] The Julia Language
 - [x] drupal
 - [x] omegaUp
@@ -99,6 +106,6 @@ That's it. Your work could help someone get in next year.
 
 ## Proposal Count
 
-Total proposals submitted: **7**
+Total proposals submitted: **8**
 
 

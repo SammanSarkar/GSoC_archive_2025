@@ -72,11 +72,13 @@ That’s it. Your work could help someone get in next year.
 ## Contributors
 
 <!-- Add contributors below -->
-- [Samman Sarkar](https://github.com/SammanSarkar/)
+- [Samman Sarkar](https://github.com/SammanSarkar)
+- [@halx](https://github.com/heilcheng)
+- [Myan V.](https://github.com/myanvoos)
 
 ## Proposal Count
 
-Total proposals submitted: **1**
+Total proposals submitted: **3**
 
 ---
 

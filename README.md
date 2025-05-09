@@ -68,6 +68,12 @@ That's it. Your work could help someone get in next year.
 
 ## Org Submission Checklist
 
+- [x] Google DeepMind
+- [x] The Julia Language
+- [x] drupal
+- [x] omegaUp
+- [x] sympy
+
 - [x] omegaUp
 - [x] DeepMind
 - [x] Drupal

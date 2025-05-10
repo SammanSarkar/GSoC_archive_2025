@@ -40,6 +40,7 @@ jobs:
           python - <<EOF
           import re
           import os
+          import glob
           from github import Github
           
           # Hardcoded contributors to always keep
@@ -47,24 +48,45 @@ jobs:
               'riteshdavv': ('Ritesh Kumar Singh', 'https://github.com/riteshdavv')
           }
           
-          def clean_org_list(content):
+          def get_org_list_from_directories():
+              """Get organization list from directories in the repository"""
+              org_dirs = []
+              for dir_path in glob.glob("*"):
+                  if os.path.isdir(dir_path) and not dir_path.startswith('.'):
+                      # Replace underscore with space and capitalize each word for display
+                      org_name = dir_path
+                      org_dirs.append(org_name)
+              return sorted(org_dirs)
+          
+          def update_org_list(content):
+              """Update the organization list based on directories in the repo"""
+              org_dirs = get_org_list_from_directories()
+              
               # Extract the org list section
               org_section = re.search(r'(## Org Submission Checklist\s*\n+)((?:- \[.\][^\n]*\n+)*)', content, re.MULTILINE)
               if not org_section:
                   return content
               
-              # Get unique entries preserving order
+              # Create updated checklist with all organizations checked
               org_lines = []
-              seen = set()
-              for line in org_section.group(2).splitlines():
-                  line = line.strip()
-                  if line and line.startswith('- [') and line not in seen:
-                      org_lines.append(line)
-                      seen.add(line)
+              for org in org_dirs:
+                  org_lines.append(f"- [x] {org}")
               
-              # Replace section with clean list
+              # Replace section with updated list
               new_section = org_section.group(1) + '\n'.join(org_lines) + '\n\n'
               return content[:org_section.start()] + new_section + content[org_section.end():]
+          
+          def count_proposals():
+              """Count total number of PDF proposals in the repository"""
+              return len(glob.glob("**/*.pdf", recursive=True))
+          
+          def update_proposal_count(content):
+              """Update the proposal count in the README"""
+              count = count_proposals()
+              count_match = re.search(r'(Total proposals submitted: \*\*)\d+(\*\*)', content)
+              if count_match:
+                  return content[:count_match.start(1)] + f"Total proposals submitted: **{count}**" + content[count_match.end(2):]
+              return content
           
           def get_contributors():
               g = Github(os.getenv('GITHUB_TOKEN'))
@@ -88,9 +110,24 @@ jobs:
               # Add PR author if this is a merged PR
               if os.getenv('GITHUB_EVENT_NAME') == 'pull_request_target':
                   try:
-                      pr_number = os.getenv('GITHUB_EVENT_PULL_REQUEST_NUMBER')
+                      with open(os.environ.get('GITHUB_EVENT_PATH')) as f:
+                          import json
+                          event = json.load(f)
+                          if event.get('pull_request', {}).get('user'):
+                              pr_user = event['pull_request']['user']
+                              username = pr_user['login'].lower()
+                              if not any(bot in username for bot in ['[bot]', 'actions-user', 'dependabot']):
+                                  contributors[username] = (
+                                      pr_user.get('name') or pr_user['login'],
+                                      f"https://github.com/{pr_user['login']}"
+                                  )
+                  except Exception as e:
+                      print(f"Error processing PR author from event file: {e}")
+                      
+                  try:
+                      pr_number = int(os.environ.get('GITHUB_REF', '').split('/')[-2])
                       if pr_number:
-                          pr = repo.get_pull(int(pr_number))
+                          pr = repo.get_pull(pr_number)
                           if pr.merged and not any(bot in pr.user.login.lower() for bot in ['[bot]', 'actions-user', 'dependabot']):
                               username = pr.user.login.lower()
                               contributors[username] = (
@@ -98,13 +135,13 @@ jobs:
                                   f'https://github.com/{pr.user.login}'
                               )
                   except Exception as e:
-                      print(f"Error processing PR author: {e}")
+                      print(f"Error processing PR author from ref: {e}")
               
               return contributors
           
           def update_contributors_section(content, contributors):
               # Find contributors section
-              contrib_match = re.search(r'(## Contributors\s*\n+<!-- Add contributors below -->)(.*?)(\n+##)', content, re.DOTALL)
+              contrib_match = re.search(r'(## Contributors\s*\n+<!-- Add contributors below -->)(.*?)(\n+##|\Z)', content, re.DOTALL)
               if not contrib_match:
                   return content
               
@@ -126,14 +163,17 @@ jobs:
                   '\n'.join(contrib_lines) + '\n\n' +
                   avatar_html
               )
-              return content[:contrib_match.start()] + new_section + content[contrib_match.end()-1:]
+              return content[:contrib_match.start()] + new_section + content[contrib_match.end(0):]
           
           # Read current README
           with open('README.md', 'r', encoding='utf-8') as f:
               content = f.read()
           
-          # Clean org list
-          content = clean_org_list(content)
+          # Update proposal count
+          content = update_proposal_count(content)
+          
+          # Update org list from directories
+          content = update_org_list(content)
           
           # Update contributors
           contributors = get_contributors()
@@ -154,7 +194,7 @@ jobs:
           git add README.md
           git diff --quiet && git diff --staged --quiet || (
             if [[ "${{ github.event_name }}" == "pull_request_target" ]]; then
-              git commit -m "Update README after PR merge"
+              git commit -m "Update README after PR merge - Add new org and contributors"
             else
               git commit -m "Update README organization list and contributors"
             fi

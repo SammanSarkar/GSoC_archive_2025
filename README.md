@@ -15,7 +15,7 @@ If your proposal was accepted, submit it here to help others like you.
 
 # Proposal Count
 
-Total proposals submitted: **17**
+Total proposals submitted: **18**
 
 ## Contributing a Proposal
 
@@ -72,6 +72,7 @@ That's it. Your work could help someone get in next year.
 ## Org Submission Checklist
 
 - [x] BeagleBoard.org
+- [x] CHAOSS
 - [x] CNCF
 - [x] Google DeepMind
 - [x] Learning Equality
@@ -99,7 +100,7 @@ That's it. Your work could help someone get in next year.
 - [Rajas Samse](https://github.com/ImRAJAS-SAMSE)
 - [Rehan Chalana](https://github.com/RehanChalana)
 - [Ritesh Kumar Singh](https://github.com/riteshdavv)
-- [RushabhMehta2005](https://github.com/RushabhMehta2005)
+- [Rushabh Mehta](https://github.com/RushabhMehta2005)
 - [Samman Sarkar](https://github.com/SammanSarkar)
 - [Shravan Goswami](https://github.com/shravanngoswamii)
 - [Triyan Mukherjee](https://github.com/FallenDeity)

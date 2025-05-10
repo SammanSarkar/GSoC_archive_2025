@@ -92,13 +92,14 @@ That's it. Your work could help someone get in next year.
 - [Habiba Ayman](https://github.com/habibayman)
 - [Hamees Sayed](https://github.com/hamees-sayed)
 - [Ibrahim](https://github.com/1brahimmohamed)
-- [iqbalcodes6602](https://github.com/iqbalcodes6602)
+- [iqbal](https://github.com/iqbalcodes6602)
 - [Kapil Sareen](https://github.com/KapilSareen)
 - [Krishnav Bajoria](https://github.com/krishnavbajoria02)
 - [Myan V.](https://github.com/myanvoos)
 - [Rajas Samse](https://github.com/ImRAJAS-SAMSE)
 - [Rehan Chalana](https://github.com/RehanChalana)
 - [Ritesh Kumar Singh](https://github.com/riteshdavv)
+- [RushabhMehta2005](https://github.com/RushabhMehta2005)
 - [Samman Sarkar](https://github.com/SammanSarkar)
 - [Shravan Goswami](https://github.com/shravanngoswamii)
 - [Triyan Mukherjee](https://github.com/FallenDeity)
@@ -118,6 +119,7 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/myanvoos"><img src="https://github.com/myanvoos.png" width="60px" alt="myanvoos" /></a>
   <a href="https://github.com/RehanChalana"><img src="https://github.com/RehanChalana.png" width="60px" alt="RehanChalana" /></a>
   <a href="https://github.com/riteshdavv"><img src="https://github.com/riteshdavv.png" width="60px" alt="riteshdavv" /></a>
+  <a href="https://github.com/RushabhMehta2005"><img src="https://github.com/RushabhMehta2005.png" width="60px" alt="RushabhMehta2005" /></a>
   <a href="https://github.com/SammanSarkar"><img src="https://github.com/SammanSarkar.png" width="60px" alt="SammanSarkar" /></a>
   <a href="https://github.com/shravanngoswamii"><img src="https://github.com/shravanngoswamii.png" width="60px" alt="shravanngoswamii" /></a>
   <a href="https://github.com/VidhuSarwal"><img src="https://github.com/VidhuSarwal.png" width="60px" alt="VidhuSarwal" /></a>

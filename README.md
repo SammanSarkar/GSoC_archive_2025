@@ -15,7 +15,7 @@ If your proposal was accepted, submit it here to help others like you.
 
 # Proposal Count
 
-Total proposals submitted: **11**
+Total proposals submitted: **12**
 
 ## Contributing a Proposal
 
@@ -74,6 +74,7 @@ That's it. Your work could help someone get in next year.
 - [x] Google DeepMind
 - [x] ML4SCI
 - [x] OSIPI
+- [x] Rocket.Chat
 - [x] The JPF team
 - [x] The Julia Language
 - [x] drupal
@@ -84,28 +85,30 @@ That's it. Your work could help someone get in next year.
 
 <!-- Add contributors below -->
 - [@halx](https://github.com/heilcheng)
+- [Abir Chakraborty](https://github.com/abirc8010)
 - [Hamees Sayed](https://github.com/hamees-sayed)
 - [Ibrahim](https://github.com/1brahimmohamed)
 - [Krishnav Bajoria](https://github.com/krishnavbajoria02)
 - [Myan V.](https://github.com/myanvoos)
 - [Rajas Samse](https://github.com/ImRAJAS-SAMSE)
-- [Ritesh Kumar Singh](https://github.com/riteshdavv)
 - [Rehan Chalana](https://github.com/RehanChalana)
+- [Ritesh Kumar Singh](https://github.com/riteshdavv)
 - [Samman Sarkar](https://github.com/SammanSarkar)
 - [Shravan Goswami](https://github.com/shravanngoswamii)
 - [Triyan Mukherjee](https://github.com/FallenDeity)
 
 <div align="center">
   <a href="https://github.com/1brahimmohamed"><img src="https://github.com/1brahimmohamed.png" width="60px" alt="1brahimmohamed" /></a>
-  <a href="https://github.com/ImRAJAS-SAMSE"><img src="https://github.com/ImRAJAS-SAMSE.png" width="60px" alt="ImRAJAS-SAMSE" /></a>
-  <a href="https://github.com/RehanChalana"><img src="https://github.com/RehanChalana.png" width="60px" alt="RehanChalana" /></a>
-  <a href="https://github.com/SammanSarkar"><img src="https://github.com/SammanSarkar.png" width="60px" alt="SammanSarkar" /></a>
+  <a href="https://github.com/abirc8010"><img src="https://github.com/abirc8010.png" width="60px" alt="abirc8010" /></a>
+  <a href="https://github.com/FallenDeity"><img src="https://github.com/FallenDeity.png" width="60px" alt="FallenDeity" /></a>
   <a href="https://github.com/hamees-sayed"><img src="https://github.com/hamees-sayed.png" width="60px" alt="hamees-sayed" /></a>
   <a href="https://github.com/heilcheng"><img src="https://github.com/heilcheng.png" width="60px" alt="heilcheng" /></a>
+  <a href="https://github.com/ImRAJAS-SAMSE"><img src="https://github.com/ImRAJAS-SAMSE.png" width="60px" alt="ImRAJAS-SAMSE" /></a>
   <a href="https://github.com/krishnavbajoria02"><img src="https://github.com/krishnavbajoria02.png" width="60px" alt="krishnavbajoria02" /></a>
   <a href="https://github.com/myanvoos"><img src="https://github.com/myanvoos.png" width="60px" alt="myanvoos" /></a>
+  <a href="https://github.com/RehanChalana"><img src="https://github.com/RehanChalana.png" width="60px" alt="RehanChalana" /></a>
+  <a href="https://github.com/riteshdavv"><img src="https://github.com/riteshdavv.png" width="60px" alt="riteshdavv" /></a>
+  <a href="https://github.com/SammanSarkar"><img src="https://github.com/SammanSarkar.png" width="60px" alt="SammanSarkar" /></a>
   <a href="https://github.com/shravanngoswamii"><img src="https://github.com/shravanngoswamii.png" width="60px" alt="shravanngoswamii" /></a>
-  <a href="https://github.com/FallenDeity"><img src="https://github.com/FallenDeity.png" width="60px" alt="FallenDeity" /></a>
 </div>
-
 

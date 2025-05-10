@@ -82,6 +82,7 @@ That's it. Your work could help someone get in next year.
 - [x] drupal
 - [x] omegaUp
 - [x] sympy
+- [x] CNCF
 
 ## Contributors
 
@@ -100,6 +101,7 @@ That's it. Your work could help someone get in next year.
 - [Shravan Goswami](https://github.com/shravanngoswamii)
 - [Triyan Mukherjee](https://github.com/FallenDeity)
 - [VidhuSarwal](https://github.com/VidhuSarwal)
+- [Kapil Sareen](https://github.com/KapilSareen)
 
 <div align="center">
   <a href="https://github.com/1brahimmohamed"><img src="https://github.com/1brahimmohamed.png" width="60px" alt="1brahimmohamed" /></a>
@@ -116,5 +118,6 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/SammanSarkar"><img src="https://github.com/SammanSarkar.png" width="60px" alt="SammanSarkar" /></a>
   <a href="https://github.com/shravanngoswamii"><img src="https://github.com/shravanngoswamii.png" width="60px" alt="shravanngoswamii" /></a>
   <a href="https://github.com/VidhuSarwal"><img src="https://github.com/VidhuSarwal.png" width="60px" alt="VidhuSarwal" /></a>
+  <a href="https://github.com/KapilSareen"><img src="https://github.com/KapilSareen.png" width="60px" alt="KapilSareen" /></a>
 </div>
 

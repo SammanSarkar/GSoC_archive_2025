@@ -15,7 +15,7 @@ If your proposal was accepted, submit it here to help others like you.
 
 # Proposal Count
 
-Total proposals submitted: **16**
+Total proposals submitted: **17**
 
 ## Contributing a Proposal
 

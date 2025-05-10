@@ -13,6 +13,8 @@ This is a community archive of accepted GSoC 2025 proposals. It exists to help f
 
 If your proposal was accepted, submit it here to help others like you.
 
+The inspiration for this repo came from [aritra8438/GSoC_archive](https://github.com/aritra8438/GSoC_archive/); you can access proposals from 2024 and earlier years here.
+
 # Proposal Count
 
 Total proposals submitted: **18**

@@ -15,7 +15,7 @@ If your proposal was accepted, submit it here to help others like you.
 
 # Proposal Count
 
-Total proposals submitted: **13**
+Total proposals submitted: **14**
 
 ## Contributing a Proposal
 
@@ -71,6 +71,7 @@ That's it. Your work could help someone get in next year.
 
 ## Org Submission Checklist
 
+- [x] BeagleBoard.org
 - [x] Google DeepMind
 - [x] Learning Equality
 - [x] ML4SCI
@@ -98,6 +99,7 @@ That's it. Your work could help someone get in next year.
 - [Samman Sarkar](https://github.com/SammanSarkar)
 - [Shravan Goswami](https://github.com/shravanngoswamii)
 - [Triyan Mukherjee](https://github.com/FallenDeity)
+- [VidhuSarwal](https://github.com/VidhuSarwal)
 
 <div align="center">
   <a href="https://github.com/1brahimmohamed"><img src="https://github.com/1brahimmohamed.png" width="60px" alt="1brahimmohamed" /></a>
@@ -113,5 +115,6 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/riteshdavv"><img src="https://github.com/riteshdavv.png" width="60px" alt="riteshdavv" /></a>
   <a href="https://github.com/SammanSarkar"><img src="https://github.com/SammanSarkar.png" width="60px" alt="SammanSarkar" /></a>
   <a href="https://github.com/shravanngoswamii"><img src="https://github.com/shravanngoswamii.png" width="60px" alt="shravanngoswamii" /></a>
+  <a href="https://github.com/VidhuSarwal"><img src="https://github.com/VidhuSarwal.png" width="60px" alt="VidhuSarwal" /></a>
 </div>
 

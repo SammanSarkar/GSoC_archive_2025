@@ -90,6 +90,7 @@ That's it. Your work could help someone get in next year.
 <!-- Add contributors below -->
 - [@halx](https://github.com/heilcheng)
 - [Abir Chakraborty](https://github.com/abirc8010)
+- [Akshat Baranwal](https://github.com/Akshatb2006) 
 - [Habiba Ayman](https://github.com/habibayman)
 - [Hamees Sayed](https://github.com/hamees-sayed)
 - [Ibrahim](https://github.com/1brahimmohamed)
@@ -124,5 +125,6 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/SammanSarkar"><img src="https://github.com/SammanSarkar.png" width="60px" alt="SammanSarkar" /></a>
   <a href="https://github.com/shravanngoswamii"><img src="https://github.com/shravanngoswamii.png" width="60px" alt="shravanngoswamii" /></a>
   <a href="https://github.com/VidhuSarwal"><img src="https://github.com/VidhuSarwal.png" width="60px" alt="VidhuSarwal" /></a>
+  <a href="https://github.com/Akshatb2006"><img src="https://github.com/Akshatb2006.png" width="60px" alt="Akshatb2006" /></a>
 </div>
 

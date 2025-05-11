@@ -103,6 +103,7 @@ That's it. Your work could help someone get in next year.
 - [Hamees Sayed](https://github.com/hamees-sayed)
 - [Ibrahim](https://github.com/1brahimmohamed)
 - [iqbal](https://github.com/iqbalcodes6602)
+- [Jay Kapadia](https://github.com/JayKapadia389)
 - [Kapil Sareen](https://github.com/KapilSareen)
 - [Krishnav Bajoria](https://github.com/krishnavbajoria02)
 - [Myan V.](https://github.com/myanvoos)
@@ -118,6 +119,7 @@ That's it. Your work could help someone get in next year.
 
 <div align="center">
   <a href="https://github.com/1brahimmohamed"><img src="https://github.com/1brahimmohamed.png" width="60px" alt="1brahimmohamed" /></a>
+  <a href="https://github.com/JayKapadia389"><img src="https://github.com/JayKapadia389.png" width="60px" alt="JayKapadia389" /></a>
   <a href="https://github.com/abirc8010"><img src="https://github.com/abirc8010.png" width="60px" alt="abirc8010" /></a>
   <a href="https://github.com/Akshatb2006"><img src="https://github.com/Akshatb2006.png" width="60px" alt="Akshatb2006" /></a>
   <a href="https://github.com/AS1100K"><img src="https://github.com/AS1100K.png" width="60px" alt="AS1100K" /></a>

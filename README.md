@@ -19,7 +19,7 @@ For more 2025 accepted proposals from 100xDevs, check out this blog post: [100xd
 
 # Proposal Count
 
-Total proposals submitted: **18**
+Total proposals submitted: **19**
 
 ## Contributing a Proposal
 
@@ -86,6 +86,7 @@ That's it. Your work could help someone get in next year.
 - [x] The JPF team
 - [x] The Julia Language
 - [x] drupal
+- [x] kornia
 - [x] omegaUp
 - [x] sympy
 

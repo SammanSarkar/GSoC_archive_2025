@@ -19,7 +19,7 @@ For more 2025 accepted proposals from 100xDevs, check out this blog post: [100xd
 
 # Proposal Count
 
-Total proposals submitted: **20**
+Total proposals submitted: **21**
 
 ## Contributing a Proposal
 
@@ -109,6 +109,7 @@ That's it. Your work could help someone get in next year.
 - [Rehan Chalana](https://github.com/RehanChalana)
 - [Ritesh Kumar Singh](https://github.com/riteshdavv)
 - [Rushabh Mehta](https://github.com/RushabhMehta2005)
+- [Saif Ali Khan](https://github.com/f-ei8ht)
 - [Samman Sarkar](https://github.com/SammanSarkar)
 - [Shravan Goswami](https://github.com/shravanngoswamii)
 - [Triyan Mukherjee](https://github.com/FallenDeity)
@@ -119,6 +120,7 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/abirc8010"><img src="https://github.com/abirc8010.png" width="60px" alt="abirc8010" /></a>
   <a href="https://github.com/Akshatb2006"><img src="https://github.com/Akshatb2006.png" width="60px" alt="Akshatb2006" /></a>
   <a href="https://github.com/AS1100K"><img src="https://github.com/AS1100K.png" width="60px" alt="AS1100K" /></a>
+  <a href="https://github.com/f-ei8ht"><img src="https://github.com/f-ei8ht.png" width="60px" alt="f-ei8ht" /></a>
   <a href="https://github.com/FallenDeity"><img src="https://github.com/FallenDeity.png" width="60px" alt="FallenDeity" /></a>
   <a href="https://github.com/habibayman"><img src="https://github.com/habibayman.png" width="60px" alt="habibayman" /></a>
   <a href="https://github.com/hamees-sayed"><img src="https://github.com/hamees-sayed.png" width="60px" alt="hamees-sayed" /></a>

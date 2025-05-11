@@ -46,7 +46,8 @@ jobs:
           # Hardcoded contributors to always keep
           PRESERVED_CONTRIBUTORS = {
               'riteshdavv': ('Ritesh Kumar Singh', 'https://github.com/riteshdavv'),
-              'officialasishkumar': ('Asish Kumar', 'https://github.com/officialasishkumar')
+              'officialasishkumar': ('Asish Kumar', 'https://github.com/officialasishkumar'),
+              'JayKapadia389': ('Jay Kapadia', 'https://github.com/JayKapadia389')
           }
           
           def get_org_list_from_directories():

@@ -19,7 +19,7 @@ For more 2025 accepted proposals from 100xDevs, check out this blog post: [100xd
 
 # Proposal Count
 
-Total proposals submitted: **19**
+Total proposals submitted: **20**
 
 ## Contributing a Proposal
 

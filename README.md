@@ -19,7 +19,7 @@ For more 2025 accepted proposals from 100xDevs, check out this blog post: [100xd
 
 # Proposal Count
 
-Total proposals submitted: **25**
+Total proposals submitted: **26**
 
 ## Contributing a Proposal
 
@@ -75,6 +75,7 @@ That's it. Your work could help someone get in next year.
 
 ## Org Submission Checklist
 
+- [x] AOSSIE
 - [x] BeagleBoard.org
 - [x] CHAOSS
 - [x] CNCF
@@ -117,7 +118,6 @@ That's it. Your work could help someone get in next year.
 - [Saif Ali Khan](https://github.com/f-ei8ht)
 - [Samman Sarkar](https://github.com/SammanSarkar)
 - [Shravan Goswami](https://github.com/shravanngoswamii)
-- [ThatDeparted2061](https://github.com/ThatDeparted2061)
 - [Triyan Mukherjee](https://github.com/FallenDeity)
 - [Vidhu](https://github.com/VidhuSarwal)
 
@@ -145,7 +145,6 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/RushabhMehta2005"><img src="https://github.com/RushabhMehta2005.png" width="60px" alt="RushabhMehta2005" /></a>
   <a href="https://github.com/SammanSarkar"><img src="https://github.com/SammanSarkar.png" width="60px" alt="SammanSarkar" /></a>
   <a href="https://github.com/shravanngoswamii"><img src="https://github.com/shravanngoswamii.png" width="60px" alt="shravanngoswamii" /></a>
-  <a href="https://github.com/ThatDeparted2061"><img src="https://github.com/ThatDeparted2061.png" width="60px" alt="ThatDeparted2061" /></a>
   <a href="https://github.com/VidhuSarwal"><img src="https://github.com/VidhuSarwal.png" width="60px" alt="VidhuSarwal" /></a>
 </div>
 

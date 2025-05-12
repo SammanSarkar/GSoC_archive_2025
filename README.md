@@ -19,7 +19,7 @@ For more 2025 accepted proposals from 100xDevs, check out this blog post: [100xd
 
 # Proposal Count
 
-Total proposals submitted: **23**
+Total proposals submitted: **24**
 
 ## Contributing a Proposal
 
@@ -109,6 +109,7 @@ That's it. Your work could help someone get in next year.
 - [Krishnav Bajoria](https://github.com/krishnavbajoria02)
 - [Myan V.](https://github.com/myanvoos)
 - [Rajas Samse](https://github.com/ImRAJAS-SAMSE)
+- [realtmxi](https://github.com/realtmxi)
 - [Rehan Chalana](https://github.com/RehanChalana)
 - [Ritesh Kumar Singh](https://github.com/riteshdavv)
 - [Rushabh Mehta](https://github.com/RushabhMehta2005)
@@ -136,6 +137,7 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/krishnavbajoria02"><img src="https://github.com/krishnavbajoria02.png" width="60px" alt="krishnavbajoria02" /></a>
   <a href="https://github.com/myanvoos"><img src="https://github.com/myanvoos.png" width="60px" alt="myanvoos" /></a>
   <a href="https://github.com/officialasishkumar"><img src="https://github.com/officialasishkumar.png" width="60px" alt="officialasishkumar" /></a>
+  <a href="https://github.com/realtmxi"><img src="https://github.com/realtmxi.png" width="60px" alt="realtmxi" /></a>
   <a href="https://github.com/RehanChalana"><img src="https://github.com/RehanChalana.png" width="60px" alt="RehanChalana" /></a>
   <a href="https://github.com/riteshdavv"><img src="https://github.com/riteshdavv.png" width="60px" alt="riteshdavv" /></a>
   <a href="https://github.com/RushabhMehta2005"><img src="https://github.com/RushabhMehta2005.png" width="60px" alt="RushabhMehta2005" /></a>

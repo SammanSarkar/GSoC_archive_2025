@@ -99,7 +99,8 @@ jobs:
               
               # Get all contributors from GitHub
               try:
-                  for contributor in repo.get_contributors():
+                  # Get all contributors, including those who haven't committed recently
+                  for contributor in repo.get_contributors(anon=False):
                       username = contributor.login.lower()
                       if not any(bot in username for bot in ['[bot]', 'actions-user', 'dependabot']):
                           contributors[username] = (
@@ -141,6 +142,19 @@ jobs:
                                   )
                   except Exception as e:
                       print(f"Error processing PR author from ref: {e}")
+              
+              # Also check for any recent commits that might have been missed
+              try:
+                  commits = repo.get_commits()
+                  for commit in commits[:50]:  # Check last 50 commits
+                      if commit.author and not any(bot in commit.author.login.lower() for bot in ['[bot]', 'actions-user', 'dependabot']):
+                          username = commit.author.login.lower()
+                          contributors[username] = (
+                              commit.author.name or commit.author.login,
+                              f'https://github.com/{commit.author.login}'
+                          )
+              except Exception as e:
+                  print(f"Error checking recent commits: {e}")
               
               return contributors
           

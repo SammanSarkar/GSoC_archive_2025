@@ -127,15 +127,18 @@ jobs:
                       print(f"Error processing PR author from event file: {e}")
                       
                   try:
-                      pr_number = int(os.environ.get('GITHUB_REF', '').split('/')[-2])
-                      if pr_number:
-                          pr = repo.get_pull(pr_number)
-                          if pr.merged and not any(bot in pr.user.login.lower() for bot in ['[bot]', 'actions-user', 'dependabot']):
-                              username = pr.user.login.lower()
-                              contributors[username] = (
-                                  pr.user.name or pr.user.login,
-                                  f'https://github.com/{pr.user.login}'
-                              )
+                      # Extract PR number from the ref
+                      ref_parts = os.environ.get('GITHUB_REF', '').split('/')
+                      if len(ref_parts) >= 3 and ref_parts[1] == 'pull':
+                          pr_number = int(ref_parts[2])
+                          if pr_number:
+                              pr = repo.get_pull(pr_number)
+                              if pr.merged and not any(bot in pr.user.login.lower() for bot in ['[bot]', 'actions-user', 'dependabot']):
+                                  username = pr.user.login.lower()
+                                  contributors[username] = (
+                                      pr.user.name or pr.user.login,
+                                      f'https://github.com/{pr.user.login}'
+                                  )
                   except Exception as e:
                       print(f"Error processing PR author from ref: {e}")
               
@@ -200,5 +203,7 @@ jobs:
             else
               git commit -m "Update README organization list and contributors"
             fi
+            # Pull latest changes before pushing
+            git pull --rebase origin main
             git push
           ) 

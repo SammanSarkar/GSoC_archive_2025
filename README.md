@@ -5,7 +5,7 @@
 </p>
 <p align="center"><b>Community archive of accepted GSoC 2025 proposals for reference and inspiration.</b></p>
 
-> **Note**: This README is automatically updated! The proposal count, organization list, and contributors are maintained by GitHub Actions whenever new proposals are added or PRs are merged.
+> **Note**: This README is automatically updated! The proposal count, organization list, and contributors are maintained by GitHub Actions whenever new proposals are added or PRs are merged. 
 
 # GSoC 2025 Accepted Proposals Archive
 

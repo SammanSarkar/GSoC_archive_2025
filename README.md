@@ -115,8 +115,6 @@ That's it. Your work could help someone get in next year.
 - [Krishnav Bajoria](https://github.com/krishnavbajoria02)
 - [Murphy](https://github.com/realtmxi)
 - [Myan V.](https://github.com/myanvoos)
-- [Neerja Doshi 👋🏼](https://github.com/neerja-1984)
-- [Rahul Harpal](https://github.com/rahulharpal1603)
 - [Rajas Samse](https://github.com/ImRAJAS-SAMSE)
 - [Rehan Chalana](https://github.com/RehanChalana)
 - [Ritesh Kumar Singh](https://github.com/riteshdavv)
@@ -144,9 +142,7 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/KapilSareen"><img src="https://github.com/KapilSareen.png" width="60px" alt="KapilSareen" /></a>
   <a href="https://github.com/krishnavbajoria02"><img src="https://github.com/krishnavbajoria02.png" width="60px" alt="krishnavbajoria02" /></a>
   <a href="https://github.com/myanvoos"><img src="https://github.com/myanvoos.png" width="60px" alt="myanvoos" /></a>
-  <a href="https://github.com/neerja-1984"><img src="https://github.com/neerja-1984.png" width="60px" alt="neerja-1984" /></a>
   <a href="https://github.com/officialasishkumar"><img src="https://github.com/officialasishkumar.png" width="60px" alt="officialasishkumar" /></a>
-  <a href="https://github.com/rahulharpal1603"><img src="https://github.com/rahulharpal1603.png" width="60px" alt="rahulharpal1603" /></a>
   <a href="https://github.com/realtmxi"><img src="https://github.com/realtmxi.png" width="60px" alt="realtmxi" /></a>
   <a href="https://github.com/RehanChalana"><img src="https://github.com/RehanChalana.png" width="60px" alt="RehanChalana" /></a>
   <a href="https://github.com/riteshdavv"><img src="https://github.com/riteshdavv.png" width="60px" alt="riteshdavv" /></a>

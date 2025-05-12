@@ -107,7 +107,6 @@ That's it. Your work could help someone get in next year.
 - [Dhairyashil Shinde](https://github.com/dhairyashiil)
 - [Habiba Ayman](https://github.com/habibayman)
 - [Hamees Sayed](https://github.com/hamees-sayed)
-- [Harsh Rao](https://github.com/ThatDeparted2061)
 - [Ibrahim](https://github.com/1brahimmohamed)
 - [iqbal](https://github.com/iqbalcodes6602)
 - [Jay Kapadia](https://github.com/JayKapadia389)
@@ -149,7 +148,6 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/RushabhMehta2005"><img src="https://github.com/RushabhMehta2005.png" width="60px" alt="RushabhMehta2005" /></a>
   <a href="https://github.com/SammanSarkar"><img src="https://github.com/SammanSarkar.png" width="60px" alt="SammanSarkar" /></a>
   <a href="https://github.com/shravanngoswamii"><img src="https://github.com/shravanngoswamii.png" width="60px" alt="shravanngoswamii" /></a>
-  <a href="https://github.com/ThatDeparted2061"><img src="https://github.com/ThatDeparted2061.png" width="60px" alt="ThatDeparted2061" /></a>
   <a href="https://github.com/VidhuSarwal"><img src="https://github.com/VidhuSarwal.png" width="60px" alt="VidhuSarwal" /></a>
 </div>
 

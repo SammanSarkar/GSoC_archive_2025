@@ -126,7 +126,6 @@ That's it. Your work could help someone get in next year.
 - [Shravan Goswami](https://github.com/shravanngoswamii)
 - [Triyan Mukherjee](https://github.com/FallenDeity)
 - [Vidhu](https://github.com/VidhuSarwal)
-- [Colin FRISCH](https://github.com/colinfrisch)
 
 <div align="center">
   <a href="https://github.com/1brahimmohamed"><img src="https://github.com/1brahimmohamed.png" width="60px" alt="1brahimmohamed" /></a>
@@ -156,6 +155,5 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/shravanngoswamii"><img src="https://github.com/shravanngoswamii.png" width="60px" alt="shravanngoswamii" /></a>
   <a href="https://github.com/ThatDeparted2061"><img src="https://github.com/ThatDeparted2061.png" width="60px" alt="ThatDeparted2061" /></a>
   <a href="https://github.com/VidhuSarwal"><img src="https://github.com/VidhuSarwal.png" width="60px" alt="VidhuSarwal" /></a>
-  <a href="https://github.com/colinfrisch"><img src="https://github.com/colinfrisch.png" width="60px" alt="colinfrisch" /></a>
 </div>
 

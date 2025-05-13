@@ -19,7 +19,7 @@ For more 2025 accepted proposals from 100xDevs, check out this blog post: [100xd
 
 # Proposal Count
 
-Total proposals submitted: **30**
+Total proposals submitted: **31**
 
 ## Contributing a Proposal
 
@@ -92,6 +92,7 @@ That's it. Your work could help someone get in next year.
 - [x] Society for Arts and Technology 
 - [x] The JPF team
 - [x] The Julia Language
+- [x] debian
 - [x] drupal
 - [x] kornia
 - [x] omegaUp
@@ -129,6 +130,7 @@ That's it. Your work could help someone get in next year.
 - [Samman Sarkar](https://github.com/SammanSarkar)
 - [Shravan Goswami](https://github.com/shravanngoswamii)
 - [Triyan Mukherjee](https://github.com/FallenDeity)
+- [Utkarsh Raj](https://github.com/utk4r-sh)
 - [Vidhu](https://github.com/VidhuSarwal)
 
 <div align="center">
@@ -161,6 +163,7 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/shravanngoswamii"><img src="https://github.com/shravanngoswamii.png" width="60px" alt="shravanngoswamii" /></a>
   <a href="https://github.com/taoerman"><img src="https://github.com/taoerman.png" width="60px" alt="taoerman" /></a>
   <a href="https://github.com/ThatDeparted2061"><img src="https://github.com/ThatDeparted2061.png" width="60px" alt="ThatDeparted2061" /></a>
+  <a href="https://github.com/utk4r-sh"><img src="https://github.com/utk4r-sh.png" width="60px" alt="utk4r-sh" /></a>
   <a href="https://github.com/VidhuSarwal"><img src="https://github.com/VidhuSarwal.png" width="60px" alt="VidhuSarwal" /></a>
 </div>
 

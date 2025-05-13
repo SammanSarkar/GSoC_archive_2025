@@ -19,7 +19,7 @@ For more 2025 accepted proposals from 100xDevs, check out this blog post: [100xd
 
 # Proposal Count
 
-Total proposals submitted: **31**
+Total proposals submitted: **32**
 
 ## Contributing a Proposal
 
@@ -76,6 +76,7 @@ That's it. Your work could help someone get in next year.
 ## Org Submission Checklist
 
 - [x] AOSSIE
+- [x] Alaska
 - [x] BeagleBoard.org
 - [x] CHAOSS
 - [x] CNCF
@@ -110,6 +111,7 @@ That's it. Your work could help someone get in next year.
 - [Darshan Patil](https://github.com/darshvn)
 - [Dhairyashil Shinde](https://github.com/dhairyashiil)
 - [Eddie Liu](https://github.com/taoerman)
+- [Gauri Ket](https://github.com/gauriket)
 - [Habiba Ayman](https://github.com/habibayman)
 - [Hamees Sayed](https://github.com/hamees-sayed)
 - [Harsh Rao](https://github.com/ThatDeparted2061)
@@ -144,6 +146,7 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/dhairyashiil"><img src="https://github.com/dhairyashiil.png" width="60px" alt="dhairyashiil" /></a>
   <a href="https://github.com/f-ei8ht"><img src="https://github.com/f-ei8ht.png" width="60px" alt="f-ei8ht" /></a>
   <a href="https://github.com/FallenDeity"><img src="https://github.com/FallenDeity.png" width="60px" alt="FallenDeity" /></a>
+  <a href="https://github.com/gauriket"><img src="https://github.com/gauriket.png" width="60px" alt="gauriket" /></a>
   <a href="https://github.com/habibayman"><img src="https://github.com/habibayman.png" width="60px" alt="habibayman" /></a>
   <a href="https://github.com/hamees-sayed"><img src="https://github.com/hamees-sayed.png" width="60px" alt="hamees-sayed" /></a>
   <a href="https://github.com/heilcheng"><img src="https://github.com/heilcheng.png" width="60px" alt="heilcheng" /></a>

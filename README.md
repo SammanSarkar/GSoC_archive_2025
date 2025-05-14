@@ -19,7 +19,7 @@ For more 2025 accepted proposals from 100xDevs, check out this blog post: [100xd
 
 # Proposal Count
 
-Total proposals submitted: **32**
+Total proposals submitted: **33**
 
 ## Contributing a Proposal
 
@@ -117,6 +117,7 @@ That's it. Your work could help someone get in next year.
 - [Harsh Rao](https://github.com/ThatDeparted2061)
 - [Ibrahim](https://github.com/1brahimmohamed)
 - [iqbal](https://github.com/iqbalcodes6602)
+- [Ishaan Gupta](https://github.com/ishaanxgupta)
 - [Jay Kapadia](https://github.com/JayKapadia389)
 - [Kapil Sareen](https://github.com/KapilSareen)
 - [Krishnav Bajoria](https://github.com/krishnavbajoria02)
@@ -152,6 +153,7 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/heilcheng"><img src="https://github.com/heilcheng.png" width="60px" alt="heilcheng" /></a>
   <a href="https://github.com/ImRAJAS-SAMSE"><img src="https://github.com/ImRAJAS-SAMSE.png" width="60px" alt="ImRAJAS-SAMSE" /></a>
   <a href="https://github.com/iqbalcodes6602"><img src="https://github.com/iqbalcodes6602.png" width="60px" alt="iqbalcodes6602" /></a>
+  <a href="https://github.com/ishaanxgupta"><img src="https://github.com/ishaanxgupta.png" width="60px" alt="ishaanxgupta" /></a>
   <a href="https://github.com/KapilSareen"><img src="https://github.com/KapilSareen.png" width="60px" alt="KapilSareen" /></a>
   <a href="https://github.com/krishnavbajoria02"><img src="https://github.com/krishnavbajoria02.png" width="60px" alt="krishnavbajoria02" /></a>
   <a href="https://github.com/myanvoos"><img src="https://github.com/myanvoos.png" width="60px" alt="myanvoos" /></a>

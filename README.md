@@ -5,9 +5,16 @@
 </p>
 <p align="center"><b>Community archive of accepted GSoC 2025 proposals for reference and inspiration.</b></p>
 
-> **Note**: This README is automatically updated! The proposal count, organization list, and contributors are maintained by GitHub Actions whenever new proposals are added or PRs are merged. 
+
+
+<h2 align="center">
+  <img src="https://img.shields.io/github/stars/SammanSarkar/GSoC_archive_2025?style=social" alt="GitHub Repo stars" style="height: 30px;" />
+  <br>
+  ⭐ Star this repo to bookmark it for future reference! ⭐
+</h2>
 
 # GSoC 2025 Accepted Proposals Archive
+
 
 This is a community archive of accepted GSoC 2025 proposals. It exists to help future contributors see real, successful proposals and learn from them.
 
@@ -16,6 +23,9 @@ If your proposal was accepted, submit it here to help others like you.
 The inspiration for this repo came from [aritra8438/GSoC_archive](https://github.com/aritra8438/GSoC_archive/); you can access proposals from 2024 and earlier years here.
 
 For more 2025 accepted proposals from 100xDevs, check out this blog post: [100xdevs blog post](https://blog.100xdevs.com/GSoC-Proposals-1ef7dfd1073580de9830ea9d774f9c7f)
+
+
+
 
 # Proposal Count
 
@@ -70,6 +80,8 @@ Total proposals submitted: **33**
    - Go to your forked repository on GitHub.
    - Click the "Compare & pull request" button for your branch.
    - Submit the pull request.
+
+> **Note**: This README is automatically updated! The proposal count, organization list, and contributors are maintained by GitHub Actions whenever new proposals are added or PRs are merged.
 
 That's it. Your work could help someone get in next year.
 

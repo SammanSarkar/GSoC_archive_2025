@@ -62,6 +62,11 @@ export default function NativePDFViewer({ fileUrl, fileName }: NativePDFViewerPr
     return fileUrl;
   };
 
+  // Get Google Docs Viewer URL that works for direct viewing (not embedded)
+  const getGoogleViewerUrl = () => {
+    return `https://docs.google.com/viewerng/viewer?url=${encodeURIComponent(fileUrl)}`;
+  };
+
   return (
     <div className="flex flex-col items-center w-full">
       <div className="w-full bg-gray-100 p-4 mb-4 rounded-lg">
@@ -135,7 +140,7 @@ export default function NativePDFViewer({ fileUrl, fileName }: NativePDFViewerPr
               </a>
               
               <a 
-                href={`https://docs.google.com/viewer?url=${encodeURIComponent(fileUrl)}`}
+                href={getGoogleViewerUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 inline-flex items-center justify-center"

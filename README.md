@@ -94,8 +94,10 @@ That's it. Your work could help someone get in next year.
 - [x] CNCF
 - [x] Chromium
 - [x] CircuitVerse.org
+- [x] Debian
 - [x] Drupal Association
 - [x] Google DeepMind
+- [x] Kornia
 - [x] Learning Equality
 - [x] Machine Learning for Science (ML4SCI)
 - [x] Open Science Initiative for Perfusion Imaging
@@ -104,13 +106,11 @@ That's it. Your work could help someone get in next year.
 - [x] Project Mesa
 - [x] Rocket.Chat
 - [x] Society for Arts and Technology
+- [x] SymPy
 - [x] The JPF team
 - [x] The Julia Language
 - [x] VideoLAN
-- [x] debian
-- [x] Kornia
 - [x] omegaUp
-- [x] sympy
 
 ## Contributors
 

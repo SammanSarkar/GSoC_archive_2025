@@ -29,7 +29,7 @@ For more 2025 accepted proposals from 100xDevs, check out this blog post: [100xd
 
 # Proposal Count
 
-Total proposals submitted: **33**
+Total proposals submitted: **34**
 
 ## Contributing a Proposal
 
@@ -93,20 +93,21 @@ That's it. Your work could help someone get in next year.
 - [x] CHAOSS
 - [x] CNCF
 - [x] Chromium
-- [x] Circuitverse
+- [x] CircuitVerse.org
+- [x] Drupal Association
 - [x] Google DeepMind
 - [x] Learning Equality
-- [x] ML4SCI
-- [x] Mesa
-- [x] OSIPI
+- [x] Machine Learning for Science (ML4SCI)
+- [x] Open Science Initiative for Perfusion Imaging
 - [x] OpenAstronomy
 - [x] Pharo Consortium
+- [x] Project Mesa
 - [x] Rocket.Chat
+- [x] Society for Arts and Technology
 - [x] The JPF team
 - [x] The Julia Language
 - [x] VideoLAN
 - [x] debian
-- [x] drupal
 - [x] kornia
 - [x] omegaUp
 - [x] sympy

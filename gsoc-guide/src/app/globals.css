@@ -12,10 +12,11 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Override dark mode preferences to keep white background */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #ffffff; /* Keep white background in dark mode */
+    --foreground: #171717; /* Keep dark text in dark mode */
   }
 }
 
@@ -23,4 +24,17 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Force light mode colors for common Tailwind dark mode classes */
+.dark .bg-gray-800,
+.dark .bg-gray-900,
+.dark .bg-black {
+  background-color: #ffffff !important;
+}
+
+.dark .text-white,
+.dark .text-gray-100,
+.dark .text-gray-200 {
+  color: #171717 !important;
 }

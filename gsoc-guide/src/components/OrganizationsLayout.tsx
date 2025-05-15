@@ -17,6 +17,8 @@ export default function OrganizationsLayout() {
   const [proposalsMap, setProposalsMap] = useState<Record<string, boolean>>({});
   const [error, setError] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<'name' | 'projectCount'>('name');
+  const [showFilters, setShowFilters] = useState(false);
+  const [totalProposals, setTotalProposals] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -38,6 +40,27 @@ export default function OrganizationsLayout() {
         setOrganizations(orgsWithProposalsFlag);
         setFilteredOrgs(sortOrganizations(orgsWithProposalsFlag, 'name'));
         setProposalsMap(proposalsData);
+        
+        // Fetch total proposal count
+        let totalPropCount = 0;
+        const orgsWithProposals = orgsWithProposalsFlag.filter(org => org.hasProposals);
+        
+        // For each organization with proposals, fetch the actual proposals to count them
+        await Promise.all(
+          orgsWithProposals.map(async (org) => {
+            try {
+              const propResponse = await fetch(`/api/proposals/${encodeURIComponent(org.name)}`);
+              if (propResponse.ok) {
+                const propData = await propResponse.json();
+                totalPropCount += propData.length;
+              }
+            } catch (error) {
+              console.error(`Error fetching proposals for ${org.name}:`, error);
+            }
+          })
+        );
+        
+        setTotalProposals(totalPropCount);
         
         // Extract all unique technologies and topics
         const techs = new Set<string>();
@@ -132,12 +155,21 @@ export default function OrganizationsLayout() {
 
   const handleFilterChange = (filters: { technologies: string[], topics: string[], hasProposals: boolean }) => {
     applyFilters(searchQuery, filters.technologies, filters.topics, filters.hasProposals);
+    // On mobile, auto-close filters after applying
+    if (window.innerWidth < 768) {
+      setShowFilters(false);
+    }
   };
 
   const handleSortChange = (sortOption: 'name' | 'projectCount') => {
     setSortBy(sortOption);
     const sorted = sortOrganizations(filteredOrgs, sortOption);
     setFilteredOrgs(sorted);
+  };
+
+  // Toggle filter sidebar for mobile
+  const toggleFilters = () => {
+    setShowFilters(!showFilters);
   };
 
   // Split the organizations into two groups for display
@@ -163,77 +195,128 @@ export default function OrganizationsLayout() {
   }
 
   return (
-    <div className="flex flex-col md:flex-row gap-6">
-      {/* Left Column - 75% - Organizations */}
-      <div className="md:w-[75%]">
-        <div className="mb-4 flex justify-between items-center">
-          <div className="text-gray-700">
-            Found <span className="font-medium">{filteredOrgs.length}</span> organizations
-          </div>
-          <div className="flex items-center">
-            <span className="text-sm text-gray-600 mr-2">Sort by:</span>
-            <select 
-              value={sortBy}
-              onChange={(e) => handleSortChange(e.target.value as 'name' | 'projectCount')}
-              className="text-sm border rounded px-2 py-1 bg-white"
-            >
-              <option value="name">Name</option>
-              <option value="projectCount">Project Count</option>
-            </select>
-          </div>
-        </div>
-
-        {filteredOrgs.length > 0 ? (
-          <div>
-            {/* Organizations with proposals */}
-            {orgsWithProposals.length > 0 && (
-              <div className="mb-6">
-                {orgsWithProposals.length < filteredOrgs.length && (
-                  <div className="mb-3">
-                    <h3 className="text-md font-medium text-gray-700">
-                      Organizations with proposals ({orgsWithProposals.length})
-                    </h3>
-                  </div>
-                )}
-                <OrganizationsGrid organizations={orgsWithProposals} />
-              </div>
-            )}
-            
-            {/* Divider if both sections exist */}
-            {orgsWithProposals.length > 0 && orgsWithoutProposals.length > 0 && (
-              <div className="border-t border-gray-200 my-6"></div>
-            )}
-            
-            {/* Organizations without proposals */}
-            {orgsWithoutProposals.length > 0 && (
-              <div>
-                {orgsWithProposals.length > 0 && (
-                  <div className="mb-3">
-                    <h3 className="text-md font-medium text-gray-500">
-                      Other organizations ({orgsWithoutProposals.length})
-                    </h3>
-                  </div>
-                )}
-                <OrganizationsGrid organizations={orgsWithoutProposals} />
-              </div>
-            )}
-          </div>
-        ) : (
-          <div className="text-center py-10 bg-gray-50 rounded-lg">
-            <p className="text-gray-600">No organizations found matching your criteria.</p>
-          </div>
-        )}
+    <div className="relative">
+      {/* Mobile Filter Toggle Button - only visible on mobile */}
+      <div className="md:hidden fixed bottom-4 right-4 z-50">
+        <button 
+          onClick={toggleFilters}
+          className="flex items-center justify-center w-14 h-14 rounded-full bg-blue-600 text-white shadow-lg"
+          aria-label={showFilters ? "Close filters" : "Show filters"}
+        >
+          {showFilters ? (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+            </svg>
+          )}
+        </button>
       </div>
 
-      {/* Right Column - 25% - Search & Filters */}
-      <div className="md:w-[25%]">
-        <div className="sticky top-4">
+      {/* Mobile Filters Overlay - only visible on mobile when active */}
+      <div className={`md:hidden fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${showFilters ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} 
+        onClick={toggleFilters}>
+      </div>
+      
+      {/* Mobile Filters Sidebar - slides in from right */}
+      <div className={`md:hidden fixed right-0 top-0 bottom-0 w-4/5 max-w-xs bg-white z-40 shadow-xl transform transition-transform duration-300 overflow-y-auto ${showFilters ? 'translate-x-0' : 'translate-x-full'}`}>
+        <div className="p-4">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-lg font-medium">Filters</h3>
+            <button onClick={toggleFilters} className="text-gray-500">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
           <SearchBar onSearch={handleSearch} />
           <FilterBar 
             technologies={allTechnologies}
             topics={allTopics}
             onFilterChange={handleFilterChange}
           />
+        </div>
+      </div>
+
+      <div className="flex flex-col md:flex-row gap-6">
+        {/* Left Column - 75% - Organizations */}
+        <div className="w-full md:w-[75%]">
+          <div className="mb-4 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+            <div className="flex flex-col gap-1 text-gray-700">
+              <div>
+                Found <span className="font-medium">{filteredOrgs.length}</span> organizations
+              </div>
+            </div>
+            <div className="flex items-center">
+              <span className="text-sm text-gray-600 mr-2">Sort by:</span>
+              <select 
+                value={sortBy}
+                onChange={(e) => handleSortChange(e.target.value as 'name' | 'projectCount')}
+                className="text-sm border rounded px-2 py-1 bg-white"
+              >
+                <option value="name">Name</option>
+                <option value="projectCount">Project Count</option>
+              </select>
+            </div>
+          </div>
+
+          {filteredOrgs.length > 0 ? (
+            <div>
+              {/* Organizations with proposals */}
+              {orgsWithProposals.length > 0 && (
+                <div className="mb-6">
+                  {orgsWithProposals.length < filteredOrgs.length && (
+                    <div className="mb-3 flex justify-between items-center">
+                      <h3 className="text-md font-medium text-gray-700">
+                        Organizations with proposals ({orgsWithProposals.length})
+                      </h3>
+                      <h3 className="text-md font-medium text-gray-700">
+                        Total <span className="font-medium">{totalProposals}</span> proposal{totalProposals !== 1 && 's'} available
+                      </h3>
+                    </div>
+                  )}
+                  <OrganizationsGrid organizations={orgsWithProposals} />
+                </div>
+              )}
+              
+              {/* Divider if both sections exist */}
+              {orgsWithProposals.length > 0 && orgsWithoutProposals.length > 0 && (
+                <div className="border-t border-gray-200 my-6"></div>
+              )}
+              
+              {/* Organizations without proposals */}
+              {orgsWithoutProposals.length > 0 && (
+                <div>
+                  {orgsWithProposals.length > 0 && (
+                    <div className="mb-3">
+                      <h3 className="text-md font-medium text-gray-500">
+                        Other organizations ({orgsWithoutProposals.length})
+                      </h3>
+                    </div>
+                  )}
+                  <OrganizationsGrid organizations={orgsWithoutProposals} />
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="text-center py-10 bg-gray-50 rounded-lg">
+              <p className="text-gray-600">No organizations found matching your criteria.</p>
+            </div>
+          )}
+        </div>
+
+        {/* Right Column - 25% - Search & Filters - Only visible on desktop */}
+        <div className="hidden md:block md:w-[25%]">
+          <div className="sticky top-4">
+            <SearchBar onSearch={handleSearch} />
+            <FilterBar 
+              technologies={allTechnologies}
+              topics={allTopics}
+              onFilterChange={handleFilterChange}
+            />
+          </div>
         </div>
       </div>
     </div>

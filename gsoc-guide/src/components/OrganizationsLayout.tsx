@@ -36,7 +36,7 @@ export default function OrganizationsLayout() {
         }));
         
         setOrganizations(orgsWithProposalsFlag);
-        setFilteredOrgs(sortOrganizationsByProposalsAndName(orgsWithProposalsFlag));
+        setFilteredOrgs(sortOrganizations(orgsWithProposalsFlag, 'name'));
         setProposalsMap(proposalsData);
         
         // Extract all unique technologies and topics
@@ -101,10 +101,10 @@ export default function OrganizationsLayout() {
       }
       
       // Sort the filtered organizations
-      const sorted = sortOrganizations(filtered);
+      const sorted = sortOrganizations(filtered, sortBy);
       setFilteredOrgs(sorted);
     },
-    [organizations, searchQuery]
+    [organizations, searchQuery, sortBy]
   );
 
   const handleSearch = useCallback((query: string) => {
@@ -112,26 +112,13 @@ export default function OrganizationsLayout() {
     applyFilters(query, [], [], false);
   }, [applyFilters]);
 
-  const sortOrganizationsByProposalsAndName = (orgs: Organization[]) => {
-    // First, separate organizations with and without proposals
-    const withProposals = orgs.filter(org => org.hasProposals);
-    const withoutProposals = orgs.filter(org => !org.hasProposals);
-    
-    // Sort each group by name (default sort)
-    withProposals.sort((a, b) => a.name.localeCompare(b.name));
-    withoutProposals.sort((a, b) => a.name.localeCompare(b.name));
-    
-    // Return concatenated results
-    return [...withProposals, ...withoutProposals];
-  };
-
-  const sortOrganizations = (orgs: Organization[]) => {
+  const sortOrganizations = (orgs: Organization[], sortOption = sortBy) => {
     // First, separate organizations with and without proposals
     const withProposals = orgs.filter(org => org.hasProposals);
     const withoutProposals = orgs.filter(org => !org.hasProposals);
     
     // Sort each group based on the selected sort option
-    if (sortBy === 'projectCount') {
+    if (sortOption === 'projectCount') {
       withProposals.sort((a, b) => (b.num_projects || 0) - (a.num_projects || 0));
       withoutProposals.sort((a, b) => (b.num_projects || 0) - (a.num_projects || 0));
     } else {
@@ -149,7 +136,7 @@ export default function OrganizationsLayout() {
 
   const handleSortChange = (sortOption: 'name' | 'projectCount') => {
     setSortBy(sortOption);
-    const sorted = sortOrganizations(filteredOrgs);
+    const sorted = sortOrganizations(filteredOrgs, sortOption);
     setFilteredOrgs(sorted);
   };
 

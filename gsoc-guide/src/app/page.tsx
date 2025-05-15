@@ -5,9 +5,10 @@ export default function HomePage() {
   return (
     <div>
       <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Google Summer of Code 2025 Guide</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Explore the Largest Collection of Accepted Proposals</h1>
         <p className="text-gray-600">
-          Explore organizations participating in GSoC 2025 and view available student proposals.
+        Maximize your GSoC chances with a proposal that stands out.<br/>
+        Learn what makes mentors pick one over the hundreds they reject.
         </p>
       </div>
       

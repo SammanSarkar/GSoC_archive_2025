@@ -1,0 +1,609 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "GSoC Organizations API",
+    "description": "The data displayed in <a href=\"https://gsocorganizations.dev\" target=\"_blank\">GSoC Organizations</a> is scraped from the official <a href=\"https://summerofcode.withgoogle.com/archive\" target=\"_blank\">GSoC archive</a>.\nYou can access the scraped data from the following endpoints.\n",
+    "contact": {
+      "name": "GSoC Organizations",
+      "email": "contact@gsocorganizations.dev"
+    },
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.gsocorganizations.dev/"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "Project": {
+        "type": "object",
+        "required": [
+          "title",
+          "short_description",
+          "description",
+          "student_name",
+          "code_url",
+          "project_url"
+        ],
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "short_description": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "student_name": {
+            "type": "string"
+          },
+          "code_url": {
+            "type": "string"
+          },
+          "project_url": {
+            "type": "string"
+          }
+        }
+      },
+      "OrganizationYear": {
+        "type": "object",
+        "required": [
+          "projects_url",
+          "num_projects",
+          "projects"
+        ],
+        "properties": {
+          "projects_url": {
+            "type": "string"
+          },
+          "num_projects": {
+            "type": "number"
+          },
+          "projects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Project"
+            }
+          }
+        }
+      },
+      "Organizations": {
+        "type": "object",
+        "required": [
+          "name",
+          "image_url",
+          "image_background_color",
+          "description",
+          "url",
+          "category",
+          "irc_channel",
+          "contact_email",
+          "mailing_list",
+          "twitter_url",
+          "blog_url",
+          "topics",
+          "technologies",
+          "years"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "image_url": {
+            "type": "string"
+          },
+          "image_background_color": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string"
+          },
+          "irc_channel": {
+            "type": "string"
+          },
+          "contact_email": {
+            "type": "string"
+          },
+          "mailing_list": {
+            "type": "string"
+          },
+          "twitter_url": {
+            "type": "string"
+          },
+          "blog_url": {
+            "type": "string"
+          },
+          "topics": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "technologies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "years": {
+            "type": "object",
+            "properties": {
+              "2016": {
+                "$ref": "#/components/schemas/OrganizationYear"
+              },
+              "2017": {
+                "$ref": "#/components/schemas/OrganizationYear"
+              },
+              "2018": {
+                "$ref": "#/components/schemas/OrganizationYear"
+              },
+              "2019": {
+                "$ref": "#/components/schemas/OrganizationYear"
+              },
+              "2020": {
+                "$ref": "#/components/schemas/OrganizationYear"
+              },
+              "2021": {
+                "$ref": "#/components/schemas/OrganizationYear"
+              },
+              "2022": {
+                "$ref": "#/components/schemas/OrganizationYear"
+              },
+              "2023": {
+                "$ref": "#/components/schemas/OrganizationYear"
+              },
+              "2024": {
+                "$ref": "#/components/schemas/OrganizationYear"
+              },
+              "2025": {
+                "$ref": "#/components/schemas/OrganizationYear"
+              }
+            }
+          }
+        }
+      },
+      "OrganizationSingleYear": {
+        "type": "object",
+        "required": [
+          "name",
+          "image_url",
+          "image_background_color",
+          "description",
+          "url",
+          "num_projects",
+          "category",
+          "projects_url",
+          "topics",
+          "technologies",
+          "irc_channel",
+          "contact_email",
+          "mailing_list",
+          "twitter_url",
+          "blog_url",
+          "projects"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "image_url": {
+            "type": "string"
+          },
+          "image_background_color": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "num_projects": {
+            "type": "number"
+          },
+          "category": {
+            "type": "string"
+          },
+          "projects_url": {
+            "type": "string"
+          },
+          "irc_channel": {
+            "type": "string"
+          },
+          "contact_email": {
+            "type": "string"
+          },
+          "mailing_list": {
+            "type": "string"
+          },
+          "twitter_url": {
+            "type": "string"
+          },
+          "blog_url": {
+            "type": "string"
+          },
+          "topics": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "technologies": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "projects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Project"
+            }
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/organizations.json": {
+      "get": {
+        "operationId": "orgsAll",
+        "summary": "All Organizations",
+        "description": "Get the data of all the organizations that participated in Google Summer of Code from 2016 to 2025.\n",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Organizations"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/2025.json": {
+      "get": {
+        "operationId": "orgs2025",
+        "summary": "2025 Organizations",
+        "description": "Get the data of all the organizations that participated in Google Summer of Code 2025.\n",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "year": {
+                      "type": "number"
+                    },
+                    "archive_url": {
+                      "type": "string"
+                    },
+                    "organizations": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/OrganizationSingleYear"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/2024.json": {
+      "get": {
+        "operationId": "orgs2024",
+        "summary": "2024 Organizations",
+        "description": "Get the data of all the organizations that participated in Google Summer of Code 2024.\n",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "year": {
+                      "type": "number"
+                    },
+                    "archive_url": {
+                      "type": "string"
+                    },
+                    "organizations": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/OrganizationSingleYear"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/2023.json": {
+      "get": {
+        "operationId": "orgs2023",
+        "summary": "2023 Organizations",
+        "description": "Get the data of all the organizations that participated in Google Summer of Code 2023.\n",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "year": {
+                      "type": "number"
+                    },
+                    "archive_url": {
+                      "type": "string"
+                    },
+                    "organizations": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/OrganizationSingleYear"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/2022.json": {
+      "get": {
+        "operationId": "orgs2022",
+        "summary": "2022 Organizations",
+        "description": "Get the data of all the organizations that participated in Google Summer of Code 2022.\n",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "year": {
+                      "type": "number"
+                    },
+                    "archive_url": {
+                      "type": "string"
+                    },
+                    "organizations": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/OrganizationSingleYear"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/2021.json": {
+      "get": {
+        "operationId": "orgs2021",
+        "summary": "2021 Organizations",
+        "description": "Get the data of all the organizations that participated in Google Summer of Code 2021.\n",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "year": {
+                      "type": "number"
+                    },
+                    "archive_url": {
+                      "type": "string"
+                    },
+                    "organizations": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/OrganizationSingleYear"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/2020.json": {
+      "get": {
+        "operationId": "orgs2020",
+        "summary": "2020 Organizations",
+        "description": "Get the data of all the organizations that participated in Google Summer of Code 2020.\n",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "year": {
+                      "type": "number"
+                    },
+                    "archive_url": {
+                      "type": "string"
+                    },
+                    "organizations": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/OrganizationSingleYear"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/2019.json": {
+      "get": {
+        "operationId": "orgs2019",
+        "summary": "2019 Organizations",
+        "description": "Get the data of all the organizations that participated in Google Summer of Code 2019.\n",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "year": {
+                      "type": "number"
+                    },
+                    "archive_url": {
+                      "type": "string"
+                    },
+                    "organizations": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/OrganizationSingleYear"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/2018.json": {
+      "get": {
+        "operationId": "orgs2018",
+        "summary": "2018 Organizations",
+        "description": "Get the data of all the organizations that participated in Google Summer of Code 2018.\n",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "year": {
+                      "type": "number"
+                    },
+                    "archive_url": {
+                      "type": "string"
+                    },
+                    "organizations": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/OrganizationSingleYear"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/2017.json": {
+      "get": {
+        "operationId": "orgs2017",
+        "summary": "2017 Organizations",
+        "description": "Get the data of all the organizations that participated in Google Summer of Code 2017.\n",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "year": {
+                      "type": "number"
+                    },
+                    "archive_url": {
+                      "type": "string"
+                    },
+                    "organizations": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/OrganizationSingleYear"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/2016.json": {
+      "get": {
+        "operationId": "orgs2016",
+        "summary": "2016 Organizations",
+        "description": "Get the data of all the organizations that participated in Google Summer of Code 2016.\n",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "year": {
+                      "type": "number"
+                    },
+                    "archive_url": {
+                      "type": "string"
+                    },
+                    "organizations": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/OrganizationSingleYear"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

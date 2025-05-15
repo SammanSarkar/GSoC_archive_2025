@@ -108,7 +108,7 @@ That's it. Your work could help someone get in next year.
 - [x] The Julia Language
 - [x] VideoLAN
 - [x] debian
-- [x] kornia
+- [x] Kornia
 - [x] omegaUp
 - [x] sympy
 

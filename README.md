@@ -105,7 +105,7 @@ That's it. Your work could help someone get in next year.
 - [x] Pharo Consortium
 - [x] Project Mesa
 - [x] Rocket.Chat
-- [x] Society for Arts and Technology
+- [x] Society for Arts and Technology (SAT)
 - [x] SymPy
 - [x] The JPF team
 - [x] The Julia Language

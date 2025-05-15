@@ -1,6 +1,5 @@
 import { Suspense } from 'react';
-import OrganizationsGrid from '@/components/OrganizationsGrid';
-import SearchFiltersWrapper from '@/components/SearchFiltersWrapper';
+import OrganizationsLayout from '@/components/OrganizationsLayout';
 
 export default function HomePage() {
   return (
@@ -10,10 +9,10 @@ export default function HomePage() {
         <p className="text-gray-600">
           Explore organizations participating in GSoC 2025 and view available student proposals.
         </p>
-        </div>
+      </div>
       
       <Suspense fallback={<div className="text-center py-10">Loading organizations...</div>}>
-        <SearchFiltersWrapper />
+        <OrganizationsLayout />
       </Suspense>
     </div>
   );

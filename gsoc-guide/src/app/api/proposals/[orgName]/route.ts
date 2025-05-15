@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getProposalsForOrganization } from '@/utils/proposals';
+import { getProposalsForGitHubOrganization } from '@/utils/github';
 
 export async function GET(
   request: NextRequest,
@@ -7,7 +7,7 @@ export async function GET(
 ) {
   try {
     const orgName = decodeURIComponent(params.orgName);
-    const proposals = getProposalsForOrganization(orgName);
+    const proposals = await getProposalsForGitHubOrganization(orgName);
     return NextResponse.json(proposals);
   } catch (error) {
     console.error(`Error fetching proposals for ${params.orgName}:`, error);

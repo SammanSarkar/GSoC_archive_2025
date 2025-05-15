@@ -22,7 +22,12 @@ export default function ProposalList({ orgName, proposals }: ProposalListProps) 
         {proposals.map((proposal, index) => (
           <div key={index} className="p-4 hover:bg-gray-50">
             <div className="flex items-center justify-between">
-              <span className="text-sm font-medium text-gray-900">{proposal.fileName}</span>
+              <div className="flex flex-col">
+                <span className="text-sm font-medium text-gray-900">{proposal.fileName}</span>
+                {proposal.size && (
+                  <span className="text-xs text-gray-500">{Math.round(proposal.size / 1024)} KB</span>
+                )}
+              </div>
               <div className="flex space-x-2">
                 <Link 
                   href={`/proposals/${encodeURIComponent(orgName)}/${encodeURIComponent(proposal.fileName)}`}

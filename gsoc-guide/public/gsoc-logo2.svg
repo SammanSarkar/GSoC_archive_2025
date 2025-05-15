@@ -12,5 +12,5 @@
   <path fill="#FFFFFF" d="M 88 39.9 C 119 39.9 144.1 65.1 144.1 96 C 144.1 126.9 119 152.2 88 152.2 C 57 152.2 31.9 127 31.9 96 C 31.9 65 57 39.9 88 39.9 M 88 36.7 C 55.2 36.7 28.7 63.3 28.7 96 C 28.7 128.7 55.3 155.3 88 155.3 C 120.7 155.3 147.3 128.7 147.3 96 C 147.3 63.3 120.8 36.7 88 36.7" transform="translate(-88, -96)" />
 
   <!-- "GG" Text -->
-  <text x="0" y="12.57" font-family="Lato" font-size="40" font-weight="700" fill="#FFFFFF" text-anchor="middle">GG</text>
+  <text x="0" y="20" font-family="Arial" font-size="60" font-weight="700" fill="#FFFFFF" text-anchor="middle">GG</text>
 </svg>

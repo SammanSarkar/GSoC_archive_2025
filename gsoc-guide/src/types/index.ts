@@ -30,6 +30,8 @@ export interface Project {
 export interface Proposal {
   fileName: string;
   path: string;
+  size?: number;
+  sha?: string;
 }
 
 export interface OrganizationWithProposals extends Organization {

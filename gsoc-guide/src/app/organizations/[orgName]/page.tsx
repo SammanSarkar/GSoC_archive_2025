@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { Organization } from '@/types';
 import ProjectList from '@/components/ProjectList';
 import ProposalList from '@/components/ProposalList';
+import { getProposalsForGitHubOrganization } from '@/utils/github';
 
 interface OrganizationPageProps {
   params: {
@@ -73,11 +74,11 @@ export default async function OrganizationPage({ params }: OrganizationPageProps
     notFound();
   }
   
-  // Fetch proposals from API
+  // Fetch proposals directly from GitHub API
   let proposals = [];
   try {
-    const proposalsResponse = await fetch(`/api/proposals/${encodeURIComponent(orgName)}`, { next: { revalidate: 3600 } });
-    proposals = await proposalsResponse.json();
+    proposals = await getProposalsForGitHubOrganization(orgName);
+    console.log(`Fetched ${proposals.length} proposals for ${orgName}`);
   } catch (error) {
     console.error('Error fetching proposals:', error);
   }
@@ -105,6 +106,7 @@ export default async function OrganizationPage({ params }: OrganizationPageProps
                   src={organization.image_url}
                   alt={`${organization.name} logo`}
                   fill
+                  sizes="(max-width: 768px) 96px, 96px"
                   className="object-contain"
                 />
               ) : (

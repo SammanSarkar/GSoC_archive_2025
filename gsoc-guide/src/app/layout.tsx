@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "GSoC Guide",
   description: "A guide to Google Summer of Code organizations and proposals",
+  icons: {
+    icon: '/gsoc-logo2.svg',
+  },
 };
 
 export default function RootLayout({
@@ -25,6 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/gsoc-logo2.svg" type="image/svg+xml" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

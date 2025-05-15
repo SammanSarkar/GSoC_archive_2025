@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { findActualOrgFolderName } from '@/utils/github';
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -11,14 +12,20 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: 'Missing org or file parameter' }, { status: 400 });
   }
 
-  const filePath = path.join(process.cwd(), '..', 'Proposals', org, file);
+  // Find the correct case-sensitive organization folder name
+  const actualOrgName = findActualOrgFolderName(org) || org;
+  
+  const filePath = path.join(process.cwd(), '..', 'Proposals', actualOrgName, file);
+  console.log(`Attempting to serve PDF from: ${filePath}`);
 
   try {
     if (!fs.existsSync(filePath)) {
+      console.log(`File not found: ${filePath}`);
       return NextResponse.json({ error: 'File not found' }, { status: 404 });
     }
 
     const pdfBuffer = fs.readFileSync(filePath);
+    console.log(`Successfully read PDF: ${file} (${pdfBuffer.length} bytes)`);
     
     return new NextResponse(pdfBuffer, {
       headers: {

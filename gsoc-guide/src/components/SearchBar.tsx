@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 interface SearchBarProps {
   onSearch: (query: string) => void;
@@ -8,7 +8,23 @@ interface SearchBarProps {
 
 export default function SearchBar({ onSearch }: SearchBarProps) {
   const [query, setQuery] = useState('');
+  const [debouncedQuery, setDebouncedQuery] = useState(query);
 
+  // Handle query changes with debounce
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedQuery(query);
+    }, 300); // 300ms debounce time
+
+    return () => clearTimeout(timer);
+  }, [query]);
+
+  // Trigger search when debounced query changes
+  useEffect(() => {
+    onSearch(debouncedQuery);
+  }, [debouncedQuery, onSearch]);
+
+  // Trigger search on form submit
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     onSearch(query);
@@ -30,7 +46,6 @@ export default function SearchBar({ onSearch }: SearchBarProps) {
               type="button"
               onClick={() => {
                 setQuery('');
-                onSearch('');
               }}
               className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
             >

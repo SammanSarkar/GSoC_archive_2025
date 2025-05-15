@@ -1,9 +1,9 @@
 import { NextResponse } from 'next/server';
-import { getAllOrganizationsWithProposals } from '@/utils/proposals';
+import { getAllOrganizationsWithGitHubProposals } from '@/utils/github';
 
 export async function GET() {
   try {
-    const proposalsMap = getAllOrganizationsWithProposals();
+    const proposalsMap = await getAllOrganizationsWithGitHubProposals();
     return NextResponse.json(proposalsMap);
   } catch (error) {
     console.error('Error fetching proposals data:', error);

@@ -18,7 +18,7 @@ const nextConfig = {
   },
   // Add experimental options to ensure proper handling of middleware for client-side navigation
   experimental: {
-    serverComponentsExternalPackages: [],
+    serverExternalPackages: [],
   },
 };
 

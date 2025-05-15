@@ -3,8 +3,8 @@ import { Proposal } from '@/types';
 import fs from 'fs';
 import path from 'path';
 
-// Attempt to use environment variable with fallback to ensure it works
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+// Get GitHub token but don't throw error if missing
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN || '';
 const REPO_OWNER = 'SammanSarkar';
 const REPO_NAME = 'GSoC_archive_2025';
 const BRANCH = 'main';
@@ -75,12 +75,18 @@ export async function getGitHubOrganizations(): Promise<string[]> {
     const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents?ref=${BRANCH}`;
     console.log('Fetching organizations from GitHub API:', url);
     
+    // Only add authorization header if token exists
+    const headers: HeadersInit = {
+      'Accept': 'application/vnd.github.v3+json',
+      'X-GitHub-Api-Version': '2022-11-28'
+    };
+    
+    if (GITHUB_TOKEN) {
+      headers['Authorization'] = `token ${GITHUB_TOKEN}`;
+    }
+    
     const response = await fetch(url, {
-      headers: {
-        'Authorization': `token ${GITHUB_TOKEN}`,
-        'Accept': 'application/vnd.github.v3+json',
-        'X-GitHub-Api-Version': '2022-11-28'
-      },
+      headers,
       cache: 'no-store'
     });
 
@@ -171,12 +177,18 @@ export async function getProposalsForGitHubOrganization(orgName: string): Promis
     const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${folderName}?ref=${BRANCH}`;
     console.log(`Fetching proposals for ${folderName} from GitHub API:`, url);
     
+    // Only add authorization header if token exists
+    const headers: HeadersInit = {
+      'Accept': 'application/vnd.github.v3+json',
+      'X-GitHub-Api-Version': '2022-11-28'
+    };
+    
+    if (GITHUB_TOKEN) {
+      headers['Authorization'] = `token ${GITHUB_TOKEN}`;
+    }
+    
     const response = await fetch(url, {
-      headers: {
-        'Authorization': `token ${GITHUB_TOKEN}`,
-        'Accept': 'application/vnd.github.v3+json',
-        'X-GitHub-Api-Version': '2022-11-28'
-      },
+      headers,
       cache: 'no-store'
     });
 

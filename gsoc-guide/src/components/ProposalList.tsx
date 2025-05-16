@@ -65,7 +65,10 @@ export default function ProposalList({ orgName, proposals }: ProposalListProps) 
                 <div className="flex flex-col">
                   <span className="text-sm font-medium text-gray-900">Accepted Proposal {index + 1}</span>
                   <span className="text-xs text-gray-500" title={proposal.fileName}>
-                    {proposal.size && `${Math.round(proposal.size / 1024)} KB`} • Year: {proposal.year}
+                    {proposal.size && `${Math.round(proposal.size / 1024)} KB`}
+                  </span>
+                  <span className="text-xs text-gray-500">
+                    Year: {proposal.year}
                   </span>
                 </div>
                 <div className="flex space-x-2">

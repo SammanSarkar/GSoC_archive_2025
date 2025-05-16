@@ -255,25 +255,73 @@ async function fetchProposalsFromBranch(url: string, year: number): Promise<Prop
  */
 export async function getAllOrganizationsWithGitHubProposals(): Promise<Record<string, boolean>> {
   try {
-    // Get both GitHub and local organizations
-    let organizations = await getGitHubOrganizations();
-    const localOrgs = getLocalOrganizations();
-    
-    // Combine and deduplicate
-    organizations = [...new Set([...organizations, ...localOrgs])];
-    console.log('Combined organizations:', organizations);
-    
+    const organizationsSet = new Set<string>();
     const result: Record<string, boolean> = {};
 
-    // For each organization, check if it has PDF files
-    await Promise.all(
-      organizations.map(async (org) => {
+    // Get organizations from main branch (2025)
+    try {
+      const mainOrgs = await getGitHubOrganizations();
+      mainOrgs.forEach(org => organizationsSet.add(org));
+    } catch (error) {
+      console.error('Error fetching main branch organizations:', error);
+    }
+
+    // Get organizations from gsoc_guide branch for each year
+    const years = ['2021', '2023', '2024'];
+    for (const year of years) {
+      try {
+        const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/Proposals/${year}?ref=${GUIDE_BRANCH}`;
+        const headers: HeadersInit = {
+          'Accept': 'application/vnd.github.v3+json',
+          'X-GitHub-Api-Version': '2022-11-28'
+        };
+        
+        if (GITHUB_TOKEN) {
+          headers['Authorization'] = `token ${GITHUB_TOKEN}`;
+        }
+        
+        const response = await fetch(url, { headers, cache: 'no-store' });
+        if (response.ok) {
+          const contents: GitHubContent[] = await response.json();
+          const yearOrgs = contents
+            .filter(item => item.type === 'dir')
+            .map(item => item.name);
+          yearOrgs.forEach(org => organizationsSet.add(org));
+        }
+      } catch (error) {
+        console.error(`Error fetching organizations for year ${year}:`, error);
+      }
+    }
+
+    // Add local organizations
+    try {
+      const localOrgs = getLocalOrganizations();
+      localOrgs.forEach(org => organizationsSet.add(org));
+    } catch (error) {
+      console.error('Error getting local organizations:', error);
+    }
+
+    // Convert Set to Array for processing
+    const organizations = Array.from(organizationsSet);
+    console.log('Total unique organizations found:', organizations.length);
+
+    // Check each organization for proposals
+    for (const org of organizations) {
+      try {
         const proposals = await getProposalsForGitHubOrganization(org);
         result[org.toLowerCase()] = proposals.length > 0;
-      })
-    );
+        if (proposals.length > 0) {
+          console.log(`Organization ${org} has ${proposals.length} proposals`);
+        }
+      } catch (error) {
+        console.error(`Error checking proposals for ${org}:`, error);
+        result[org.toLowerCase()] = false;
+      }
+    }
 
-    console.log('Organizations with proposals map:', result);
+    const orgsWithProposals = Object.values(result).filter(Boolean).length;
+    console.log(`Found ${orgsWithProposals} organizations with proposals out of ${organizations.length} total organizations`);
+    
     return result;
   } catch (error) {
     console.error('Error getting organizations with proposals:', error);

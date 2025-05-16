@@ -1,0 +1,145 @@
+{
+    "organizations": {
+      "Ardupilot": {
+        "hasProposals": true,
+        "proposalCount": 2
+      },
+      "CERN-HSF": {
+        "hasProposals": true,
+        "proposalCount": 2
+      },
+      "CircuitVerse.org": {
+        "hasProposals": true,
+        "proposalCount": 3
+      },
+      "CloudCV": {
+        "hasProposals": true,
+        "proposalCount": 1
+      },
+      "GNU Compiler Collection (GCC)": {
+        "hasProposals": true,
+        "proposalCount": 1
+      },
+      "Internet Health Report": {
+        "hasProposals": true,
+        "proposalCount": 1
+      },
+      "gprMax": {
+        "hasProposals": true,
+        "proposalCount": 1
+      },
+      "52°North Spatial Information Research GmbH": {
+        "hasProposals": true,
+        "proposalCount": 1
+      },
+      "AOSSIE": {
+        "hasProposals": true,
+        "proposalCount": 2
+      },
+      "Learning Equality": {
+        "hasProposals": true,
+        "proposalCount": 2
+      },
+      "Oppia Foundation": {
+        "hasProposals": true,
+        "proposalCount": 1
+      },    
+      "Sugar Labs": {
+        "hasProposals": true,
+        "proposalCount": 1
+      },
+      "The Honeynet Project": {
+        "hasProposals": true,
+        "proposalCount": 1
+      },
+      "The Linux Foundation": {
+        "hasProposals": true,
+        "proposalCount": 1
+      },
+      "omegaUp": {
+        "hasProposals": true,
+        "proposalCount": 3
+      },
+      "The JPF Team": {
+        "hasProposals": true,
+        "proposalCount": 3
+      },
+      "Alaska": {
+        "hasProposals": true,
+        "proposalCount": 2
+      },
+      "BeagleBoard.org": {
+        "hasProposals": true,
+        "proposalCount": 1
+      },
+      "CHAOSS": {
+        "hasProposals": true,
+        "proposalCount": 2
+      },
+      "CNCF": {
+        "hasProposals": true,
+        "proposalCount": 1
+      },
+      "Chromium": {
+        "hasProposals": true,
+        "proposalCount": 2
+      },
+      "Debian": {
+        "hasProposals": true,
+        "proposalCount": 1
+      },
+      "Drupal Association": {
+        "hasProposals": true,
+        "proposalCount": 2
+      },
+      "Google DeepMind": {
+        "hasProposals": true,
+        "proposalCount": 3
+      },
+      "Kornia": {
+        "hasProposals": true,
+        "proposalCount": 1
+      },
+      "Machine Learning for Science (ML4SCI)": {
+        "hasProposals": true,
+        "proposalCount": 1
+      },
+      "Open Science Initiative for Perfusion Imaging": {
+        "hasProposals": true,
+        "proposalCount": 1
+      },
+      "OpenAstronomy": {
+        "hasProposals": true,
+        "proposalCount": 1
+      },
+      "Pharo Consortium": {
+        "hasProposals": true,
+        "proposalCount": 1
+      },
+      "Project Mesa": {
+        "hasProposals": true,
+        "proposalCount": 1
+      },
+      "Rocket.Chat": {
+        "hasProposals": true,
+        "proposalCount": 2
+      },
+      "Society for Arts and Technology (SAT)": {
+        "hasProposals": true,
+        "proposalCount": 1
+      },
+      "SymPy": {
+        "hasProposals": true,
+        "proposalCount": 2
+      },
+      "The Julia Language": {
+        "hasProposals": true,
+        "proposalCount": 1
+      },
+      "VideoLAN": {
+        "hasProposals": true,
+        "proposalCount": 1
+      }
+    }
+  }
+  

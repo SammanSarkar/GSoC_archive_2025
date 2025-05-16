@@ -6,6 +6,7 @@ import SearchBar from './SearchBar';
 import FilterBar from './FilterBar';
 import OrganizationsGrid from './OrganizationsGrid';
 import { fetchOrganizations2025 } from '@/utils/api';
+import { getOrgProposalsData, getTotalProposals } from '@/utils/orgData';
 
 export default function OrganizationsLayout() {
   const [organizations, setOrganizations] = useState<Organization[]>([]);
@@ -14,7 +15,6 @@ export default function OrganizationsLayout() {
   const [searchQuery, setSearchQuery] = useState('');
   const [allTechnologies, setAllTechnologies] = useState<string[]>([]);
   const [allTopics, setAllTopics] = useState<string[]>([]);
-  const [proposalsMap, setProposalsMap] = useState<Record<string, boolean>>({});
   const [error, setError] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<'name' | 'projectCount'>('name');
   const [showFilters, setShowFilters] = useState(false);
@@ -25,42 +25,23 @@ export default function OrganizationsLayout() {
       try {
         setLoading(true);
         setError(null);
+        
+        // Fetch organizations from API
         const orgs = await fetchOrganizations2025();
         
-        // Fetch proposals data from the API
-        const proposalsResponse = await fetch('/api/proposals');
-        const proposalsData = await proposalsResponse.json();
+        // Get proposal data from local JSON
+        const proposalsData = getOrgProposalsData();
+        const totalProps = getTotalProposals();
         
         // Add hasProposals flag to each organization
         const orgsWithProposalsFlag = orgs.map(org => ({
           ...org,
-          hasProposals: proposalsData[org.name.toLowerCase()] || false
+          hasProposals: proposalsData[org.name]?.hasProposals || false
         }));
         
         setOrganizations(orgsWithProposalsFlag);
         setFilteredOrgs(sortOrganizations(orgsWithProposalsFlag, 'name'));
-        setProposalsMap(proposalsData);
-        
-        // Fetch total proposal count
-        let totalPropCount = 0;
-        const orgsWithProposals = orgsWithProposalsFlag.filter(org => org.hasProposals);
-        
-        // For each organization with proposals, fetch the actual proposals to count them
-        await Promise.all(
-          orgsWithProposals.map(async (org) => {
-            try {
-              const propResponse = await fetch(`/api/proposals/${encodeURIComponent(org.name)}`);
-              if (propResponse.ok) {
-                const propData = await propResponse.json();
-                totalPropCount += propData.length;
-              }
-            } catch (error) {
-              console.error(`Error fetching proposals for ${org.name}:`, error);
-            }
-          })
-        );
-        
-        setTotalProposals(totalPropCount);
+        setTotalProposals(totalProps);
         
         // Extract all unique technologies and topics
         const techs = new Set<string>();
@@ -75,14 +56,12 @@ export default function OrganizationsLayout() {
         setAllTopics(Array.from(topics));
       } catch (error) {
         console.error('Error fetching data:', error);
-        setError('Failed to fetch organization data. Please try again later.');
-        setOrganizations([]);
-        setFilteredOrgs([]);
+        setError('Failed to load organizations. Please try again later.');
       } finally {
         setLoading(false);
       }
     };
-    
+
     fetchData();
   }, []);
 

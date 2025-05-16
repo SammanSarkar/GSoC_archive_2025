@@ -7,7 +7,8 @@ import path from 'path';
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN || '';
 const REPO_OWNER = 'SammanSarkar';
 const REPO_NAME = 'GSoC_archive_2025';
-const BRANCH = 'main';
+const MAIN_BRANCH = 'main';
+const GUIDE_BRANCH = 'gsoc_guide';
 const LOCAL_PROPOSALS_PATH = path.join(process.cwd(), '..', 'Proposals');
 
 interface GitHubContent {
@@ -72,7 +73,7 @@ export function findActualOrgFolderName(inputOrgName: string): string | null {
  */
 export async function getGitHubOrganizations(): Promise<string[]> {
   try {
-    const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents?ref=${BRANCH}`;
+    const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents?ref=${MAIN_BRANCH}`;
     console.log('Fetching organizations from GitHub API:', url);
     
     // Only add authorization header if token exists
@@ -149,7 +150,8 @@ export function getLocalProposals(orgName: string): Proposal[] {
           fileName: file,
           path: `/api/pdf?org=${encodeURIComponent(actualOrgName)}&file=${encodeURIComponent(file)}`,
           size: stats.size,
-          sha: '' // Not available for local files
+          sha: '', // Not available for local files
+          year: 2025 // Default to 2025 for local files
         };
       });
     
@@ -174,63 +176,77 @@ export async function getProposalsForGitHubOrganization(orgName: string): Promis
     }
     
     const folderName = actualOrgName || orgName;
-    const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${folderName}?ref=${BRANCH}`;
-    console.log(`Fetching proposals for ${folderName} from GitHub API:`, url);
-    
-    // Only add authorization header if token exists
-    const headers: HeadersInit = {
-      'Accept': 'application/vnd.github.v3+json',
-      'X-GitHub-Api-Version': '2022-11-28'
-    };
-    
-    if (GITHUB_TOKEN) {
-      headers['Authorization'] = `token ${GITHUB_TOKEN}`;
-    }
-    
-    const response = await fetch(url, {
-      headers,
-      cache: 'no-store'
-    });
+    const allProposals: Proposal[] = [];
 
-    if (!response.ok) {
-      if (response.status === 404) {
-        console.log(`Organization directory ${folderName} not found on GitHub, trying local filesystem`);
-        // Try local filesystem as a fallback
-        return getLocalProposals(orgName);
-      }
-      const errorText = await response.text();
-      console.error(`GitHub API error (${response.status}):`, errorText);
-      throw new Error(`GitHub API error: ${response.status}`);
+    // Fetch from main branch (2025)
+    const mainUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${folderName}?ref=${MAIN_BRANCH}`;
+    const mainProposals = await fetchProposalsFromBranch(mainUrl, 2025);
+    allProposals.push(...mainProposals);
+
+    // Fetch from gsoc_guide branch (2022-2024)
+    // First get the list of year folders
+    const years = ['2021', '2023', '2024'];
+    for (const year of years) {
+      const guideUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/Proposals/${year}/${folderName}?ref=${GUIDE_BRANCH}`;
+      const yearProposals = await fetchProposalsFromBranch(guideUrl, parseInt(year));
+      allProposals.push(...yearProposals);
     }
 
-    const contents: GitHubContent[] = await response.json();
-    
-    // Filter PDF files
-    const proposals = contents
-      .filter(item => item.type === 'file' && item.name.toLowerCase().endsWith('.pdf'))
-      .map(item => ({
-        fileName: item.name,
-        path: item.download_url || '',
-        size: item.size,
-        sha: item.sha
-      }));
-      
-    console.log(`Found ${proposals.length} GitHub proposals for ${folderName}:`, 
-      proposals.map(p => p.fileName));
-      
-    // If GitHub API doesn't have any proposals, try local filesystem
-    if (proposals.length === 0) {
+    // If no proposals found on GitHub, try local filesystem
+    if (allProposals.length === 0) {
       console.log(`No proposals found on GitHub for ${folderName}, trying local filesystem`);
       return getLocalProposals(orgName);
     }
     
-    return proposals;
+    return allProposals;
   } catch (error) {
     console.error(`Error fetching proposals for ${orgName}:`, error);
     // Try local filesystem as a fallback
     console.log(`Error fetching GitHub proposals for ${orgName}, trying local filesystem`);
     return getLocalProposals(orgName);
   }
+}
+
+/**
+ * Helper function to fetch proposals from a specific branch
+ */
+async function fetchProposalsFromBranch(url: string, year: number): Promise<Proposal[]> {
+  const headers: HeadersInit = {
+    'Accept': 'application/vnd.github.v3+json',
+    'X-GitHub-Api-Version': '2022-11-28'
+  };
+  
+  if (GITHUB_TOKEN) {
+    headers['Authorization'] = `token ${GITHUB_TOKEN}`;
+  }
+  
+  const response = await fetch(url, {
+    headers,
+    cache: 'no-store'
+  });
+
+  if (!response.ok) {
+    if (response.status === 404) {
+      console.log(`No proposals found at ${url}`);
+      return [];
+    }
+    const errorText = await response.text();
+    console.error(`GitHub API error (${response.status}):`, errorText);
+    return [];
+  }
+
+  const contents: GitHubContent[] = await response.json();
+  
+  // Filter PDF files
+  return contents
+    .filter(item => item.type === 'file' && item.name.toLowerCase().endsWith('.pdf'))
+    .map(item => ({
+      fileName: item.name,
+      path: item.download_url || '',
+      size: item.size,
+      sha: item.sha,
+      year: year
+    }));
 }
 
 /**

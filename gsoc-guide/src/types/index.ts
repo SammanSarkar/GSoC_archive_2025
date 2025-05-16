@@ -32,6 +32,7 @@ export interface Proposal {
   path: string;
   size?: number;
   sha?: string;
+  year: number;
 }
 
 export interface OrganizationWithProposals extends Organization {

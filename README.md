@@ -3,7 +3,21 @@
 <p align="center">
     <img src="https://github.com/Rishabh04-02/The-Beginners-Guide-to-Google-Summer-of-Code-GSoC/blob/master/gsoclogo.svg">    
 </p>
+
+# 🌐 Introducing GSoC Guide
+
+**Website:** [https://gsocguide.vercel.app/](https://gsocguide.vercel.app/)  
+A comprehensive platform to help you succeed in Google Summer of Code.  
+Explore org-wise accepted proposals from past years and curated blogs, tips, and resources to maximize your chances.
+
+<p align="center">
+    <img width="871" alt="GSoC Guide Screenshot" src="https://github.com/user-attachments/assets/f79be551-f2fd-41bc-9ee7-d42c7e3c5421" />
+</p>
+
+---
+
 <p align="center"><b>Community archive of accepted GSoC 2025 proposals for reference and inspiration.</b></p>
+
 
 
 

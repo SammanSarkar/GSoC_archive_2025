@@ -42,7 +42,7 @@ For more 2025 accepted proposals from 100xDevs, check out this blog post: [100xd
 
 # Proposal Count
 
-Total proposals submitted: **35**
+Total proposals submitted: **36**
 
 ## Contributing a Proposal
 
@@ -110,6 +110,7 @@ That's it. Your work could help someone get in next year.
 - [x] Debian
 - [x] Drupal Association
 - [x] Google DeepMind
+- [x] JdeRobot
 - [x] Kornia
 - [x] Learning Equality
 - [x] Machine Learning for Science (ML4SCI)
@@ -155,6 +156,7 @@ That's it. Your work could help someone get in next year.
 - [Ritesh Kumar Singh](https://github.com/riteshdavv)
 - [Rushabh Mehta](https://github.com/RushabhMehta2005)
 - [Saif Ali Khan](https://github.com/f-ei8ht)
+- [Sakhineti Praveena](https://github.com/SakhinetiPraveena)
 - [Samman Sarkar](https://github.com/SammanSarkar)
 - [Shravan Goswami](https://github.com/shravanngoswamii)
 - [Triyan Mukherjee](https://github.com/FallenDeity)
@@ -187,6 +189,7 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/rishisulakhe"><img src="https://github.com/rishisulakhe.png" width="60px" alt="rishisulakhe" /></a>
   <a href="https://github.com/riteshdavv"><img src="https://github.com/riteshdavv.png" width="60px" alt="riteshdavv" /></a>
   <a href="https://github.com/RushabhMehta2005"><img src="https://github.com/RushabhMehta2005.png" width="60px" alt="RushabhMehta2005" /></a>
+  <a href="https://github.com/SakhinetiPraveena"><img src="https://github.com/SakhinetiPraveena.png" width="60px" alt="SakhinetiPraveena" /></a>
   <a href="https://github.com/SammanSarkar"><img src="https://github.com/SammanSarkar.png" width="60px" alt="SammanSarkar" /></a>
   <a href="https://github.com/shravanngoswamii"><img src="https://github.com/shravanngoswamii.png" width="60px" alt="shravanngoswamii" /></a>
   <a href="https://github.com/taoerman"><img src="https://github.com/taoerman.png" width="60px" alt="taoerman" /></a>

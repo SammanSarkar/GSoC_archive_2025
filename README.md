@@ -42,7 +42,7 @@ For more 2025 accepted proposals from 100xDevs, check out this blog post: [100xd
 
 # Proposal Count
 
-Total proposals submitted: **34**
+Total proposals submitted: **35**
 
 ## Contributing a Proposal
 
@@ -123,6 +123,7 @@ That's it. Your work could help someone get in next year.
 - [x] The JPF team
 - [x] The Julia Language
 - [x] VideoLAN
+- [x] cBioPortal for Cancer Genomics
 - [x] omegaUp
 
 ## Contributors
@@ -150,6 +151,7 @@ That's it. Your work could help someone get in next year.
 - [Rahul Harpal](https://github.com/rahulharpal1603)
 - [Rajas Samse](https://github.com/ImRAJAS-SAMSE)
 - [Rehan Chalana](https://github.com/RehanChalana)
+- [Rishi Prasad Sulakhe](https://github.com/rishisulakhe)
 - [Ritesh Kumar Singh](https://github.com/riteshdavv)
 - [Rushabh Mehta](https://github.com/RushabhMehta2005)
 - [Saif Ali Khan](https://github.com/f-ei8ht)
@@ -182,6 +184,7 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/rahulharpal1603"><img src="https://github.com/rahulharpal1603.png" width="60px" alt="rahulharpal1603" /></a>
   <a href="https://github.com/realtmxi"><img src="https://github.com/realtmxi.png" width="60px" alt="realtmxi" /></a>
   <a href="https://github.com/RehanChalana"><img src="https://github.com/RehanChalana.png" width="60px" alt="RehanChalana" /></a>
+  <a href="https://github.com/rishisulakhe"><img src="https://github.com/rishisulakhe.png" width="60px" alt="rishisulakhe" /></a>
   <a href="https://github.com/riteshdavv"><img src="https://github.com/riteshdavv.png" width="60px" alt="riteshdavv" /></a>
   <a href="https://github.com/RushabhMehta2005"><img src="https://github.com/RushabhMehta2005.png" width="60px" alt="RushabhMehta2005" /></a>
   <a href="https://github.com/SammanSarkar"><img src="https://github.com/SammanSarkar.png" width="60px" alt="SammanSarkar" /></a>

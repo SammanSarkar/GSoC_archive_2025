@@ -12,6 +12,10 @@
         "hasProposals": true,
         "proposalCount": 3
       },
+      "JdeRobot": {
+        "hasProposals": true,
+        "proposalCount": 1
+      },
       "CloudCV": {
         "hasProposals": true,
         "proposalCount": 1
@@ -126,7 +130,7 @@
       },
       "Rocket.Chat": {
         "hasProposals": true,
-        "proposalCount": 2
+        "proposalCount": 3
       },
       "Society for Arts and Technology (SAT)": {
         "hasProposals": true,

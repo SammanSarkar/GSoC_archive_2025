@@ -198,22 +198,41 @@ export async function getProposalsForGitHubOrganization(orgName: string): Promis
     }
     
     const allProposals: Proposal[] = [];
-
-    // Fetch from main branch (2025)
-    const mainUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${actualCaseName}?ref=${MAIN_BRANCH}`;
-    const mainProposals = await fetchProposalsFromBranch(mainUrl, 2025);
-    allProposals.push(...mainProposals);
-
-    // Fetch from gsoc_guide branch (2022-2024)
-    // First get the list of year folders
-    const years = ['2019', '2022', '2021', '2023', '2024'];
-    for (const year of years) {
-      const guideUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/Proposals/${year}/${actualCaseName}?ref=${GUIDE_BRANCH}`;
-      const yearProposals = await fetchProposalsFromBranch(guideUrl, parseInt(year));
-      allProposals.push(...yearProposals);
+    
+    // Define a function to try fetching with different folder name variations
+    const tryFetchProposals = async (folderName: string) => {
+      let proposals: Proposal[] = [];
+      
+      // Fetch from main branch (2025)
+      const mainUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${folderName}?ref=${MAIN_BRANCH}`;
+      const mainProposals = await fetchProposalsFromBranch(mainUrl, 2025);
+      proposals.push(...mainProposals);
+      
+      // Fetch from gsoc_guide branch (2022-2024)
+      const years = ['2019', '2022', '2021', '2023', '2024'];
+      for (const year of years) {
+        const guideUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/Proposals/${year}/${folderName}?ref=${GUIDE_BRANCH}`;
+        const yearProposals = await fetchProposalsFromBranch(guideUrl, parseInt(year));
+        proposals.push(...yearProposals);
+      }
+      
+      return proposals;
+    };
+    
+    // First try with the actual case name
+    console.log(`Trying to fetch proposals with folder name: ${actualCaseName}`);
+    const proposalsWithActualCase = await tryFetchProposals(actualCaseName);
+    allProposals.push(...proposalsWithActualCase);
+    
+    // If the actual case name is different from lowercase and no proposals were found,
+    // also try with the lowercase name as fallback
+    if (actualCaseName.toLowerCase() !== actualCaseName && proposalsWithActualCase.length === 0) {
+      console.log(`No proposals found with ${actualCaseName}, trying lowercase ${lowerCaseOrgName}`);
+      const proposalsWithLowercase = await tryFetchProposals(lowerCaseOrgName);
+      allProposals.push(...proposalsWithLowercase);
     }
 
-    // If no proposals found on GitHub, try local filesystem
+    // If still no proposals found on GitHub, try local filesystem
     if (allProposals.length === 0) {
       console.log(`No proposals found on GitHub for ${actualCaseName}, trying local filesystem`);
       return getLocalProposals(lowerCaseOrgName);
@@ -336,6 +355,7 @@ export async function getAllOrganizationsWithGitHubProposals(): Promise<Record<s
         const actualCaseName = caseMap[org] || org;
         console.log(`Checking proposals for ${org} (actual case: ${actualCaseName})`);
         
+        // We let getProposalsForGitHubOrganization handle trying different case variations
         const proposals = await getProposalsForGitHubOrganization(org);
         result[org.toLowerCase()] = proposals.length > 0;
         if (proposals.length > 0) {
@@ -387,6 +407,9 @@ export async function getGitHubOrganizationCaseMap(): Promise<Record<string, str
   }
   
   try {
+    const caseMap: Record<string, string> = {};
+    
+    // Get organizations from main branch
     const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents?ref=${MAIN_BRANCH}`;
     
     const headers: HeadersInit = {
@@ -411,12 +434,37 @@ export async function getGitHubOrganizationCaseMap(): Promise<Record<string, str
     const contents: GitHubContent[] = await response.json();
     
     // Build mapping from lowercase name to actual case name
-    const caseMap: Record<string, string> = {};
     contents
       .filter(item => item.type === 'dir')
       .forEach(item => {
         caseMap[item.name.toLowerCase()] = item.name;
       });
+    
+    // Also check each year's proposals directory
+    const years = ['2019', '2022', '2021', '2023', '2024'];
+    for (const year of years) {
+      try {
+        const yearUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/Proposals/${year}?ref=${GUIDE_BRANCH}`;
+        const yearResponse = await fetch(yearUrl, {
+          headers,
+          cache: 'no-store'
+        });
+        
+        if (yearResponse.ok) {
+          const yearContents: GitHubContent[] = await yearResponse.json();
+          yearContents
+            .filter(item => item.type === 'dir')
+            .forEach(item => {
+              // Only add if not already in the map
+              if (!caseMap[item.name.toLowerCase()]) {
+                caseMap[item.name.toLowerCase()] = item.name;
+              }
+            });
+        }
+      } catch (error) {
+        console.error(`Error fetching year ${year} directories:`, error);
+      }
+    }
     
     console.log('Created organization case mapping:', caseMap);
     

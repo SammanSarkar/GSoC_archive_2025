@@ -185,7 +185,7 @@ export async function getProposalsForGitHubOrganization(orgName: string): Promis
 
     // Fetch from gsoc_guide branch (2022-2024)
     // First get the list of year folders
-    const years = ['2021', '2023', '2024'];
+    const years = ['2019', '2022', '2021', '2023', '2024'];
     for (const year of years) {
       const guideUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/Proposals/${year}/${folderName}?ref=${GUIDE_BRANCH}`;
       const yearProposals = await fetchProposalsFromBranch(guideUrl, parseInt(year));

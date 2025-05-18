@@ -252,7 +252,7 @@ export default function OrganizationsLayout() {
                         Organizations with proposals ({orgsWithProposals.length})
                       </h3>
                       <h3 className="text-md font-medium text-gray-700">
-                        Total <span className="font-medium">{totalProposals}</span> proposal{totalProposals !== 1 && 's'} available
+                        Total <span className="font-bold">{totalProposals}</span> proposal{totalProposals !== 1 && 's'} available
                       </h3>
                     </div>
                   )}

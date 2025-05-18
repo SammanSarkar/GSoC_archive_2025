@@ -16,7 +16,7 @@ export default function OrganizationsLayout() {
   const [allTechnologies, setAllTechnologies] = useState<string[]>([]);
   const [allTopics, setAllTopics] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [sortBy, setSortBy] = useState<'name' | 'projectCount'>('name');
+  const [sortBy, setSortBy] = useState<'name' | 'projectCount'>('projectCount');
   const [showFilters, setShowFilters] = useState(false);
   const [totalProposals, setTotalProposals] = useState(0);
 
@@ -232,11 +232,11 @@ export default function OrganizationsLayout() {
               <span className="text-sm text-gray-600 mr-2">Sort by:</span>
               <select 
                 value={sortBy}
-                onChange={(e) => handleSortChange(e.target.value as 'name' | 'projectCount')}
+                onChange={(e) => handleSortChange(e.target.value as 'projectCount' | 'name')}
                 className="text-sm border rounded px-2 py-1 bg-white"
               >
-                <option value="name">Name</option>
                 <option value="projectCount">Project Count</option>
+                <option value="name">Name</option>
               </select>
             </div>
           </div>

@@ -12,9 +12,11 @@ interface ProposalPageProps {
 
 export async function generateMetadata({ params }: ProposalPageProps) {
   const { orgName, proposalName } = params;
+  const decodedOrgName = decodeURIComponent(orgName).toLowerCase();
+  const decodedProposalName = decodeURIComponent(proposalName);
   
   return {
-    title: `${decodeURIComponent(proposalName)} | ${decodeURIComponent(orgName)} | GSoC Guide`,
+    title: `${decodedProposalName} | ${decodedOrgName} | GSoC Guide`,
   };
 }
 

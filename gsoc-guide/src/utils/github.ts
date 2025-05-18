@@ -28,6 +28,9 @@ interface GitHubContent {
   };
 }
 
+// Cache for storing the mapping between lowercase org names and their actual case in the repo
+let orgCaseMapCache: Record<string, string> = {};
+
 /**
  * Gets a list of available proposal directories from local filesystem
  */
@@ -174,18 +177,30 @@ export async function getProposalsForGitHubOrganization(orgName: string): Promis
     // Convert orgName to lowercase for consistency
     const lowerCaseOrgName = orgName.toLowerCase();
     
-    // First, find the actual case-sensitive folder name
-    const actualOrgName = findActualOrgFolderName(lowerCaseOrgName);
-    if (!actualOrgName) {
-      console.log(`No matching folder found for ${lowerCaseOrgName}, using original name`);
-      // Continue with original name for GitHub API attempt
+    // Get the case mapping from GitHub
+    const caseMap = await getGitHubOrganizationCaseMap();
+    
+    // First try to find the actual case from GitHub
+    let actualCaseName = caseMap[lowerCaseOrgName];
+    
+    // If not found in GitHub case map, try local folders
+    if (!actualCaseName) {
+      const actualOrgName = findActualOrgFolderName(lowerCaseOrgName);
+      if (actualOrgName) {
+        actualCaseName = actualOrgName;
+      } else {
+        console.log(`No matching folder found for ${lowerCaseOrgName}, using original name`);
+        // Continue with original name for GitHub API attempt
+        actualCaseName = orgName;
+      }
+    } else {
+      console.log(`Found actual case name in GitHub: ${actualCaseName} for ${lowerCaseOrgName}`);
     }
     
-    const folderName = actualOrgName || orgName;
     const allProposals: Proposal[] = [];
 
     // Fetch from main branch (2025)
-    const mainUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${folderName}?ref=${MAIN_BRANCH}`;
+    const mainUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${actualCaseName}?ref=${MAIN_BRANCH}`;
     const mainProposals = await fetchProposalsFromBranch(mainUrl, 2025);
     allProposals.push(...mainProposals);
 
@@ -193,14 +208,14 @@ export async function getProposalsForGitHubOrganization(orgName: string): Promis
     // First get the list of year folders
     const years = ['2019', '2022', '2021', '2023', '2024'];
     for (const year of years) {
-      const guideUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/Proposals/${year}/${folderName}?ref=${GUIDE_BRANCH}`;
+      const guideUrl = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/Proposals/${year}/${actualCaseName}?ref=${GUIDE_BRANCH}`;
       const yearProposals = await fetchProposalsFromBranch(guideUrl, parseInt(year));
       allProposals.push(...yearProposals);
     }
 
     // If no proposals found on GitHub, try local filesystem
     if (allProposals.length === 0) {
-      console.log(`No proposals found on GitHub for ${folderName}, trying local filesystem`);
+      console.log(`No proposals found on GitHub for ${actualCaseName}, trying local filesystem`);
       return getLocalProposals(lowerCaseOrgName);
     }
     
@@ -264,6 +279,9 @@ export async function getAllOrganizationsWithGitHubProposals(): Promise<Record<s
     const organizationsSet = new Set<string>();
     const result: Record<string, boolean> = {};
 
+    // Get the case mapping from GitHub
+    const caseMap = await getGitHubOrganizationCaseMap();
+
     // Get organizations from main branch (2025)
     try {
       const mainOrgs = await getGitHubOrganizations();
@@ -314,6 +332,10 @@ export async function getAllOrganizationsWithGitHubProposals(): Promise<Record<s
     // Check each organization for proposals
     for (const org of organizations) {
       try {
+        // Use the case mapping to get the actual case if available
+        const actualCaseName = caseMap[org] || org;
+        console.log(`Checking proposals for ${org} (actual case: ${actualCaseName})`);
+        
         const proposals = await getProposalsForGitHubOrganization(org);
         result[org.toLowerCase()] = proposals.length > 0;
         if (proposals.length > 0) {
@@ -352,4 +374,57 @@ export async function fetchFromGitHub(endpoint: string) {
   }
   
   return response.json();
+}
+
+/**
+ * Gets the actual case-sensitive organization folder names from GitHub
+ * This helps match lowercase org names with the actual case in the repo
+ */
+export async function getGitHubOrganizationCaseMap(): Promise<Record<string, string>> {
+  // Return from cache if available
+  if (Object.keys(orgCaseMapCache).length > 0) {
+    return orgCaseMapCache;
+  }
+  
+  try {
+    const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents?ref=${MAIN_BRANCH}`;
+    
+    const headers: HeadersInit = {
+      'Accept': 'application/vnd.github.v3+json',
+      'X-GitHub-Api-Version': '2022-11-28'
+    };
+    
+    if (GITHUB_TOKEN) {
+      headers['Authorization'] = `token ${GITHUB_TOKEN}`;
+    }
+    
+    const response = await fetch(url, {
+      headers,
+      cache: 'no-store'
+    });
+
+    if (!response.ok) {
+      console.error(`GitHub API error (${response.status})`);
+      return {};
+    }
+
+    const contents: GitHubContent[] = await response.json();
+    
+    // Build mapping from lowercase name to actual case name
+    const caseMap: Record<string, string> = {};
+    contents
+      .filter(item => item.type === 'dir')
+      .forEach(item => {
+        caseMap[item.name.toLowerCase()] = item.name;
+      });
+    
+    console.log('Created organization case mapping:', caseMap);
+    
+    // Cache the result
+    orgCaseMapCache = caseMap;
+    return caseMap;
+  } catch (error) {
+    console.error('Error fetching GitHub organization case map:', error);
+    return {};
+  }
 } 

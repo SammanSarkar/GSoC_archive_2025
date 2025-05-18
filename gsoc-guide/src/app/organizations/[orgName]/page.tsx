@@ -16,7 +16,7 @@ interface OrganizationPageProps {
 export async function generateMetadata({
   params,
 }: OrganizationPageProps): Promise<Metadata> {
-  const orgName = decodeURIComponent(params.orgName);
+  const orgName = decodeURIComponent(params.orgName).toLowerCase();
   
   try {
     // Directly fetch organization data from the API
@@ -30,7 +30,7 @@ export async function generateMetadata({
     }
     
     const organization = data.organizations.find((org: Organization) => 
-      org.name.toLowerCase() === orgName.toLowerCase()
+      org.name.toLowerCase() === orgName
     );
     
     if (!organization) {

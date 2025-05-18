@@ -49,12 +49,15 @@ export function getLocalOrganizations(): string[] {
  */
 export function findActualOrgFolderName(inputOrgName: string): string | null {
   try {
+    // Ensure input is lowercase
+    const lowerCaseOrgName = inputOrgName.toLowerCase();
+    
     // Get all local organization folders
     const localOrgs = getLocalOrganizations();
     
     // Try to find a case-insensitive match
     const match = localOrgs.find(org => 
-      org.toLowerCase() === inputOrgName.toLowerCase()
+      org.toLowerCase() === lowerCaseOrgName
     );
     
     if (match) {
@@ -102,14 +105,14 @@ export async function getGitHubOrganizations(): Promise<string[]> {
     // Filter only directories (which represent organizations)
     const organizations = contents
       .filter(item => item.type === 'dir')
-      .map(item => item.name);
+      .map(item => item.name.toLowerCase());
       
     console.log('Found organizations:', organizations);
     
     // If GitHub API doesn't return anything useful, try local filesystem
     if (organizations.length === 0) {
       console.log('No organizations found via GitHub API, trying local filesystem');
-      return getLocalOrganizations();
+      return getLocalOrganizations().map(org => org.toLowerCase());
     }
     
     return organizations;
@@ -117,7 +120,7 @@ export async function getGitHubOrganizations(): Promise<string[]> {
     console.error('Error fetching GitHub organizations:', error);
     // Fallback to local filesystem
     console.log('Falling back to local filesystem for organizations');
-    return getLocalOrganizations();
+    return getLocalOrganizations().map(org => org.toLowerCase());
   }
 }
 
@@ -168,10 +171,13 @@ export function getLocalProposals(orgName: string): Proposal[] {
  */
 export async function getProposalsForGitHubOrganization(orgName: string): Promise<Proposal[]> {
   try {
+    // Convert orgName to lowercase for consistency
+    const lowerCaseOrgName = orgName.toLowerCase();
+    
     // First, find the actual case-sensitive folder name
-    const actualOrgName = findActualOrgFolderName(orgName);
+    const actualOrgName = findActualOrgFolderName(lowerCaseOrgName);
     if (!actualOrgName) {
-      console.log(`No matching folder found for ${orgName}, using original name`);
+      console.log(`No matching folder found for ${lowerCaseOrgName}, using original name`);
       // Continue with original name for GitHub API attempt
     }
     
@@ -195,7 +201,7 @@ export async function getProposalsForGitHubOrganization(orgName: string): Promis
     // If no proposals found on GitHub, try local filesystem
     if (allProposals.length === 0) {
       console.log(`No proposals found on GitHub for ${folderName}, trying local filesystem`);
-      return getLocalProposals(orgName);
+      return getLocalProposals(lowerCaseOrgName);
     }
     
     return allProposals;
@@ -203,7 +209,7 @@ export async function getProposalsForGitHubOrganization(orgName: string): Promis
     console.error(`Error fetching proposals for ${orgName}:`, error);
     // Try local filesystem as a fallback
     console.log(`Error fetching GitHub proposals for ${orgName}, trying local filesystem`);
-    return getLocalProposals(orgName);
+    return getLocalProposals(orgName.toLowerCase());
   }
 }
 
@@ -261,7 +267,7 @@ export async function getAllOrganizationsWithGitHubProposals(): Promise<Record<s
     // Get organizations from main branch (2025)
     try {
       const mainOrgs = await getGitHubOrganizations();
-      mainOrgs.forEach(org => organizationsSet.add(org));
+      mainOrgs.forEach(org => organizationsSet.add(org.toLowerCase()));
     } catch (error) {
       console.error('Error fetching main branch organizations:', error);
     }
@@ -285,7 +291,7 @@ export async function getAllOrganizationsWithGitHubProposals(): Promise<Record<s
           const contents: GitHubContent[] = await response.json();
           const yearOrgs = contents
             .filter(item => item.type === 'dir')
-            .map(item => item.name);
+            .map(item => item.name.toLowerCase());
           yearOrgs.forEach(org => organizationsSet.add(org));
         }
       } catch (error) {
@@ -296,7 +302,7 @@ export async function getAllOrganizationsWithGitHubProposals(): Promise<Record<s
     // Add local organizations
     try {
       const localOrgs = getLocalOrganizations();
-      localOrgs.forEach(org => organizationsSet.add(org));
+      localOrgs.forEach(org => organizationsSet.add(org.toLowerCase()));
     } catch (error) {
       console.error('Error getting local organizations:', error);
     }

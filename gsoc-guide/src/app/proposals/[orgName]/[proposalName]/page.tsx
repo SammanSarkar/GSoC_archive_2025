@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import { getProposalsForGitHubOrganization } from '@/utils/github';
 import PDFViewerWrapper from '@/components/PDFViewerWrapper';
@@ -23,8 +23,13 @@ export default async function ProposalPage({ params }: ProposalPageProps) {
   const decodedOrgName = decodeURIComponent(orgName);
   const decodedProposalName = decodeURIComponent(proposalName);
   
+  // Redirect to lowercase version of the URL if it's not already lowercase
+  if (decodedOrgName !== decodedOrgName.toLowerCase()) {
+    redirect(`/proposals/${encodeURIComponent(decodedOrgName.toLowerCase())}/${encodeURIComponent(decodedProposalName)}`);
+  }
+  
   // Get all proposals for this organization to find the matching one
-  const proposals = await getProposalsForGitHubOrganization(decodedOrgName);
+  const proposals = await getProposalsForGitHubOrganization(decodedOrgName.toLowerCase());
   const proposal = proposals.find(p => p.fileName === decodedProposalName);
   
   if (!proposal) {
@@ -36,7 +41,7 @@ export default async function ProposalPage({ params }: ProposalPageProps) {
   return (
     <div className="flex flex-col min-h-screen p-4">
       <div className="mb-6 bg-white shadow-sm p-4 rounded-lg flex items-center justify-between">
-        <Link href={`/organizations/${encodeURIComponent(decodedOrgName)}`} className="text-blue-600 hover:text-blue-800 flex items-center">
+        <Link href={`/organizations/${encodeURIComponent(decodedOrgName.toLowerCase())}`} className="text-blue-600 hover:text-blue-800 flex items-center">
           <svg 
             xmlns="http://www.w3.org/2000/svg" 
             viewBox="0 0 20 20" 

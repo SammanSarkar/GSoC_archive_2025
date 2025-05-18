@@ -7,6 +7,9 @@ interface ProposalListProps {
 }
 
 export default function ProposalList({ orgName, proposals }: ProposalListProps) {
+  // Ensure orgName is always lowercase for consistency
+  const lowerCaseOrgName = orgName.toLowerCase();
+
   if (proposals.length === 0) {
     return (
       <div>
@@ -41,7 +44,7 @@ export default function ProposalList({ orgName, proposals }: ProposalListProps) 
             Submit PR to GitHub Repository
           </a>
           <p className="text-blue-600 text-xs mt-2">
-            Place your proposal under the folder: <span className="font-mono bg-blue-100 px-1">{orgName}</span>
+            Place your proposal under the folder: <span className="font-mono bg-blue-100 px-1">{lowerCaseOrgName}</span>
           </p>
         </div>
       </div>
@@ -73,7 +76,7 @@ export default function ProposalList({ orgName, proposals }: ProposalListProps) 
                 </div>
                 <div className="flex space-x-2">
                   <Link
-                    href={`/proposals/${encodeURIComponent(orgName)}/${encodeURIComponent(proposal.fileName)}`}
+                    href={`/proposals/${encodeURIComponent(lowerCaseOrgName)}/${encodeURIComponent(proposal.fileName)}`}
                     className="inline-flex items-center justify-center px-3 py-1.5 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
                   >
                     <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

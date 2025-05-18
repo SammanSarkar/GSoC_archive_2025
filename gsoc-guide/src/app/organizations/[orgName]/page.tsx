@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
-import { Organization } from '@/types';
+import { notFound, redirect } from 'next/navigation';
+import { Organization, Proposal } from '@/types';
 import ProjectList from '@/components/ProjectList';
 import ProposalList from '@/components/ProposalList';
 import { getProposalsForGitHubOrganization } from '@/utils/github';
@@ -54,6 +54,12 @@ export async function generateMetadata({
 export default async function OrganizationPage({ params }: OrganizationPageProps) {
   const orgName = decodeURIComponent(params.orgName);
   
+  // Redirect to lowercase version of the URL if it's not already lowercase
+  // This ensures we have a single canonical URL for each organization
+  if (orgName !== orgName.toLowerCase()) {
+    redirect(`/organizations/${encodeURIComponent(orgName.toLowerCase())}`);
+  }
+  
   // Directly fetch organization data from the API to avoid client-side routing issues
   let organization: Organization | null = null;
   
@@ -75,9 +81,9 @@ export default async function OrganizationPage({ params }: OrganizationPageProps
   }
   
   // Fetch proposals directly from GitHub API
-  let proposals = [];
+  let proposals: Proposal[] = [];
   try {
-    proposals = await getProposalsForGitHubOrganization(orgName);
+    proposals = await getProposalsForGitHubOrganization(orgName.toLowerCase());
     console.log(`Fetched ${proposals.length} proposals for ${orgName}`);
   } catch (error) {
     console.error('Error fetching proposals:', error);
@@ -168,7 +174,7 @@ export default async function OrganizationPage({ params }: OrganizationPageProps
           <div className="bg-white rounded-lg shadow-md overflow-hidden sticky top-4">
             <div className="p-6">
               <h2 className="text-xl font-bold text-gray-900 mb-4">Proposals</h2>
-              <ProposalList orgName={organization.name} proposals={proposals} />
+              <ProposalList orgName={organization.name.toLowerCase()} proposals={proposals} />
             </div>
           </div>
         </div>

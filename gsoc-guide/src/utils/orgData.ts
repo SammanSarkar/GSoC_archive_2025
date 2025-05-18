@@ -10,7 +10,14 @@ export interface OrgProposalsMap {
 }
 
 export function getOrgProposalsData(): OrgProposalsMap {
-  return orgData.organizations;
+  // Convert organization names to lowercase
+  const orgsWithLowercaseNames: OrgProposalsMap = {};
+  
+  Object.entries(orgData.organizations).forEach(([orgName, data]) => {
+    orgsWithLowercaseNames[orgName.toLowerCase()] = data;
+  });
+  
+  return orgsWithLowercaseNames;
 }
 
 export function getTotalProposals(): number {
@@ -23,5 +30,5 @@ export function getTotalProposals(): number {
 export function getOrganizationsWithProposals(): string[] {
   return Object.entries(orgData.organizations)
     .filter(([_, data]) => data.hasProposals)
-    .map(([orgName]) => orgName);
+    .map(([orgName]) => orgName.toLowerCase());
 } 

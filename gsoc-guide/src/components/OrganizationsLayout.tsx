@@ -36,7 +36,7 @@ export default function OrganizationsLayout() {
         // Add hasProposals flag to each organization
         const orgsWithProposalsFlag = orgs.map(org => ({
           ...org,
-          hasProposals: proposalsData[org.name]?.hasProposals || false
+          hasProposals: proposalsData[org.name.toLowerCase()]?.hasProposals || false
         }));
         
         setOrganizations(orgsWithProposalsFlag);

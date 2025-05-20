@@ -10,7 +10,7 @@
 A comprehensive platform to help you succeed in Google Summer of Code.  
 Explore org-wise accepted proposals **(110+ proposals)** from past years and curated blogs, tips, and resources to maximize your chances.
 
-<img width="872" alt="image" src="https://github.com/user-attachments/assets/794a7566-e171-4c9c-80fc-3fab2912ccc7" />
+<img width="860" alt="image" src="https://github.com/user-attachments/assets/d1c36ebd-293c-4e9d-a6e0-06ae27d64874" />
 
 
 ---

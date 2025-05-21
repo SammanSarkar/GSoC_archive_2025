@@ -42,7 +42,7 @@ For more 2025 accepted proposals from 100xDevs, check out this blog post: [100xd
 
 # Proposal Count
 
-Total proposals submitted: **37**
+Total proposals submitted: **38**
 
 ## Contributing a Proposal
 
@@ -125,6 +125,7 @@ That's it. Your work could help someone get in next year.
 - [x] The Julia Language
 - [x] VideoLAN
 - [x] cBioPortal for Cancer Genomics
+- [x] kro
 - [x] omegaUp
 
 ## Contributors
@@ -135,6 +136,7 @@ That's it. Your work could help someone get in next year.
 - [Asish Kumar](https://github.com/officialasishkumar)
 - [Colin FRISCH](https://github.com/colinfrisch)
 - [Darshan Patil](https://github.com/darshvn)
+- [Dhairya Majmudar](https://github.com/DhairyaMajmudar)
 - [Dhairyashil Shinde](https://github.com/dhairyashiil)
 - [Eddie Liu](https://github.com/taoerman)
 - [Gauri Ket](https://github.com/gauriket)
@@ -170,6 +172,7 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/abirc8010"><img src="https://github.com/abirc8010.png" width="60px" alt="abirc8010" /></a>
   <a href="https://github.com/colinfrisch"><img src="https://github.com/colinfrisch.png" width="60px" alt="colinfrisch" /></a>
   <a href="https://github.com/darshvn"><img src="https://github.com/darshvn.png" width="60px" alt="darshvn" /></a>
+  <a href="https://github.com/DhairyaMajmudar"><img src="https://github.com/DhairyaMajmudar.png" width="60px" alt="DhairyaMajmudar" /></a>
   <a href="https://github.com/dhairyashiil"><img src="https://github.com/dhairyashiil.png" width="60px" alt="dhairyashiil" /></a>
   <a href="https://github.com/f-ei8ht"><img src="https://github.com/f-ei8ht.png" width="60px" alt="f-ei8ht" /></a>
   <a href="https://github.com/FallenDeity"><img src="https://github.com/FallenDeity.png" width="60px" alt="FallenDeity" /></a>

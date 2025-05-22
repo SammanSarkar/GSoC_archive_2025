@@ -42,7 +42,7 @@ For more 2025 accepted proposals from 100xDevs, check out this blog post: [100xd
 
 # Proposal Count
 
-Total proposals submitted: **38**
+Total proposals submitted: **39**
 
 ## Contributing a Proposal
 
@@ -149,8 +149,9 @@ That's it. Your work could help someone get in next year.
 - [Jay Kapadia](https://github.com/JayKapadia389)
 - [Kapil Sareen](https://github.com/KapilSareen)
 - [Krishnav Bajoria](https://github.com/krishnavbajoria02)
+- [M V.](https://github.com/myanvoos)
 - [Murphy](https://github.com/realtmxi)
-- [Myan V.](https://github.com/myanvoos)
+- [Nandini ](https://github.com/Nandini-Jaiswal)
 - [Neerja Doshi 👋🏼](https://github.com/neerja-1984)
 - [Rahul Harpal](https://github.com/rahulharpal1603)
 - [Rajas Samse](https://github.com/ImRAJAS-SAMSE)
@@ -186,6 +187,7 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/KapilSareen"><img src="https://github.com/KapilSareen.png" width="60px" alt="KapilSareen" /></a>
   <a href="https://github.com/krishnavbajoria02"><img src="https://github.com/krishnavbajoria02.png" width="60px" alt="krishnavbajoria02" /></a>
   <a href="https://github.com/myanvoos"><img src="https://github.com/myanvoos.png" width="60px" alt="myanvoos" /></a>
+  <a href="https://github.com/Nandini-Jaiswal"><img src="https://github.com/Nandini-Jaiswal.png" width="60px" alt="Nandini-Jaiswal" /></a>
   <a href="https://github.com/neerja-1984"><img src="https://github.com/neerja-1984.png" width="60px" alt="neerja-1984" /></a>
   <a href="https://github.com/officialasishkumar"><img src="https://github.com/officialasishkumar.png" width="60px" alt="officialasishkumar" /></a>
   <a href="https://github.com/rahulharpal1603"><img src="https://github.com/rahulharpal1603.png" width="60px" alt="rahulharpal1603" /></a>

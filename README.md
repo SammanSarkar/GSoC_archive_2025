@@ -42,7 +42,7 @@ For more 2025 accepted proposals from 100xDevs, check out this blog post: [100xd
 
 # Proposal Count
 
-Total proposals submitted: **39**
+Total proposals submitted: **40**
 
 ## Contributing a Proposal
 
@@ -121,6 +121,7 @@ That's it. Your work could help someone get in next year.
 - [x] Rocket.Chat
 - [x] Society for Arts and Technology (SAT)
 - [x] SymPy
+- [x] TARDIS-SN
 - [x] The JPF team
 - [x] The Julia Language
 - [x] VideoLAN

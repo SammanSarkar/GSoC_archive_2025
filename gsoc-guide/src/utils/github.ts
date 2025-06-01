@@ -11,6 +11,13 @@ const MAIN_BRANCH = 'main';
 const GUIDE_BRANCH = 'gsoc_guide';
 const LOCAL_PROPOSALS_PATH = path.join(process.cwd(), '..', 'Proposals');
 
+// Special case mapping for organization names with characters not allowed in Windows folder names
+const SPECIAL_ORG_MAPPING: Record<string, string> = {
+  'kro | kube resource orchestrator': 'kro',
+  'kro | Kube Resource Orchestrator': 'kro',
+  'kro': 'kro' // Add lowercase version for consistency
+};
+
 interface GitHubContent {
   name: string;
   path: string;
@@ -181,11 +188,20 @@ export async function getProposalsForGitHubOrganization(orgName: string): Promis
     // Create an array of all possible folder name variations to try
     const folderVariations: string[] = [];
     
-    // 1. Always add the lowercase name
-    folderVariations.push(lowerCaseOrgName);
+    // 1. Check for special case mapping first
+    const specialCaseFolder = SPECIAL_ORG_MAPPING[orgName] || SPECIAL_ORG_MAPPING[lowerCaseOrgName];
+    if (specialCaseFolder) {
+      console.log(`Using special case folder name '${specialCaseFolder}' for organization '${orgName}'`);
+      folderVariations.push(specialCaseFolder);
+    }
     
-    // 2. Add the original name if different from lowercase
-    if (orgName !== lowerCaseOrgName) {
+    // 2. Add the lowercase name if not already added
+    if (!folderVariations.includes(lowerCaseOrgName)) {
+      folderVariations.push(lowerCaseOrgName);
+    }
+    
+    // 3. Add the original name if different from lowercase and not already added
+    if (orgName !== lowerCaseOrgName && !folderVariations.includes(orgName)) {
       folderVariations.push(orgName);
     }
     

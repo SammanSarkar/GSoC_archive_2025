@@ -42,7 +42,7 @@ For more 2025 accepted proposals from 100xDevs, check out this blog post: [100xd
 
 # Proposal Count
 
-Total proposals submitted: **42**
+Total proposals submitted: **43**
 
 ## Contributing a Proposal
 
@@ -144,7 +144,6 @@ That's it. Your work could help someone get in next year.
 - [Gauri Ket](https://github.com/gauriket)
 - [Hari Srinivasan](https://github.com/Haz3-jolt)
 - [iqbal](https://github.com/iqbalcodes6602)
-- [Ishaan Gupta](https://github.com/ishaanxgupta)
 - [Ishan Mitra](https://github.com/ishanmitra)
 - [Jay Kapadia](https://github.com/JayKapadia389)
 - [Kapil Sareen](https://github.com/KapilSareen)
@@ -164,6 +163,7 @@ That's it. Your work could help someone get in next year.
 - [Samman Sarkar](https://github.com/SammanSarkar)
 - [Shravan Goswami](https://github.com/shravanngoswamii)
 - [Utkarsh Raj](https://github.com/utk4r-sh)
+- [Vansh Kumar Singh](https://github.com/vanshksingh)
 - [Vidhu](https://github.com/VidhuSarwal)
 
 <div align="center">
@@ -178,7 +178,6 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/Haz3-jolt"><img src="https://github.com/Haz3-jolt.png" width="60px" alt="Haz3-jolt" /></a>
   <a href="https://github.com/ImRAJAS-SAMSE"><img src="https://github.com/ImRAJAS-SAMSE.png" width="60px" alt="ImRAJAS-SAMSE" /></a>
   <a href="https://github.com/iqbalcodes6602"><img src="https://github.com/iqbalcodes6602.png" width="60px" alt="iqbalcodes6602" /></a>
-  <a href="https://github.com/ishaanxgupta"><img src="https://github.com/ishaanxgupta.png" width="60px" alt="ishaanxgupta" /></a>
   <a href="https://github.com/ishanmitra"><img src="https://github.com/ishanmitra.png" width="60px" alt="ishanmitra" /></a>
   <a href="https://github.com/KapilSareen"><img src="https://github.com/KapilSareen.png" width="60px" alt="KapilSareen" /></a>
   <a href="https://github.com/krishnavbajoria02"><img src="https://github.com/krishnavbajoria02.png" width="60px" alt="krishnavbajoria02" /></a>
@@ -197,6 +196,7 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/shravanngoswamii"><img src="https://github.com/shravanngoswamii.png" width="60px" alt="shravanngoswamii" /></a>
   <a href="https://github.com/taoerman"><img src="https://github.com/taoerman.png" width="60px" alt="taoerman" /></a>
   <a href="https://github.com/utk4r-sh"><img src="https://github.com/utk4r-sh.png" width="60px" alt="utk4r-sh" /></a>
+  <a href="https://github.com/vanshksingh"><img src="https://github.com/vanshksingh.png" width="60px" alt="vanshksingh" /></a>
   <a href="https://github.com/VidhuSarwal"><img src="https://github.com/VidhuSarwal.png" width="60px" alt="VidhuSarwal" /></a>
 </div>
 

@@ -139,11 +139,20 @@ That's it. Your work could help someone get in next year.
 - [Akshat Baranwal](https://github.com/Akshatb2006)
 - [Anas Iqbal](https://github.com/iqbalcodes6602)
 - [Asish Kumar](https://github.com/officialasishkumar)
+- [Colin FRISCH](https://github.com/colinfrisch)
+- [Darshan Patil](https://github.com/darshvn)
 - [Dhairya Majmudar](https://github.com/DhairyaMajmudar)
+- [Dhairyashil Shinde](https://github.com/dhairyashiil)
 - [Dishant Miyani](https://github.com/Dishant1804)
 - [Eddie Liu](https://github.com/taoerman)
 - [Gauri Ket](https://github.com/gauriket)
+- [Habiba Ayman](https://github.com/habibayman)
+- [hailey](https://github.com/heilcheng)
+- [Hamees Sayed](https://github.com/hamees-sayed)
 - [Hari Srinivasan](https://github.com/Haz3-jolt)
+- [Harsh Rao](https://github.com/ThatDeparted2061)
+- [Ibrahim](https://github.com/1brahimmohamed)
+- [Ishaan Gupta](https://github.com/ishaanxgupta)
 - [Ishan Mitra](https://github.com/ishanmitra)
 - [Jay Kapadia](https://github.com/JayKapadia389)
 - [Kapil Sareen](https://github.com/KapilSareen)
@@ -162,22 +171,32 @@ That's it. Your work could help someone get in next year.
 - [Sakhineti Praveena](https://github.com/SakhinetiPraveena)
 - [Samman Sarkar](https://github.com/SammanSarkar)
 - [Shravan Goswami](https://github.com/shravanngoswamii)
+- [Triyan Mukherjee](https://github.com/FallenDeity)
 - [Utkarsh Raj](https://github.com/utk4r-sh)
 - [Vansh Kumar Singh](https://github.com/vanshksingh)
 - [Vidhu](https://github.com/VidhuSarwal)
 
 <div align="center">
+  <a href="https://github.com/1brahimmohamed"><img src="https://github.com/1brahimmohamed.png" width="60px" alt="1brahimmohamed" /></a>
   <a href="https://github.com/JayKapadia389"><img src="https://github.com/JayKapadia389.png" width="60px" alt="JayKapadia389" /></a>
   <a href="https://github.com/abirc8010"><img src="https://github.com/abirc8010.png" width="60px" alt="abirc8010" /></a>
   <a href="https://github.com/Akshatb2006"><img src="https://github.com/Akshatb2006.png" width="60px" alt="Akshatb2006" /></a>
   <a href="https://github.com/AS1100K"><img src="https://github.com/AS1100K.png" width="60px" alt="AS1100K" /></a>
+  <a href="https://github.com/colinfrisch"><img src="https://github.com/colinfrisch.png" width="60px" alt="colinfrisch" /></a>
+  <a href="https://github.com/darshvn"><img src="https://github.com/darshvn.png" width="60px" alt="darshvn" /></a>
   <a href="https://github.com/DhairyaMajmudar"><img src="https://github.com/DhairyaMajmudar.png" width="60px" alt="DhairyaMajmudar" /></a>
+  <a href="https://github.com/dhairyashiil"><img src="https://github.com/dhairyashiil.png" width="60px" alt="dhairyashiil" /></a>
   <a href="https://github.com/Dishant1804"><img src="https://github.com/Dishant1804.png" width="60px" alt="Dishant1804" /></a>
   <a href="https://github.com/f-ei8ht"><img src="https://github.com/f-ei8ht.png" width="60px" alt="f-ei8ht" /></a>
+  <a href="https://github.com/FallenDeity"><img src="https://github.com/FallenDeity.png" width="60px" alt="FallenDeity" /></a>
   <a href="https://github.com/gauriket"><img src="https://github.com/gauriket.png" width="60px" alt="gauriket" /></a>
+  <a href="https://github.com/habibayman"><img src="https://github.com/habibayman.png" width="60px" alt="habibayman" /></a>
+  <a href="https://github.com/hamees-sayed"><img src="https://github.com/hamees-sayed.png" width="60px" alt="hamees-sayed" /></a>
   <a href="https://github.com/Haz3-jolt"><img src="https://github.com/Haz3-jolt.png" width="60px" alt="Haz3-jolt" /></a>
+  <a href="https://github.com/heilcheng"><img src="https://github.com/heilcheng.png" width="60px" alt="heilcheng" /></a>
   <a href="https://github.com/ImRAJAS-SAMSE"><img src="https://github.com/ImRAJAS-SAMSE.png" width="60px" alt="ImRAJAS-SAMSE" /></a>
   <a href="https://github.com/iqbalcodes6602"><img src="https://github.com/iqbalcodes6602.png" width="60px" alt="iqbalcodes6602" /></a>
+  <a href="https://github.com/ishaanxgupta"><img src="https://github.com/ishaanxgupta.png" width="60px" alt="ishaanxgupta" /></a>
   <a href="https://github.com/ishanmitra"><img src="https://github.com/ishanmitra.png" width="60px" alt="ishanmitra" /></a>
   <a href="https://github.com/KapilSareen"><img src="https://github.com/KapilSareen.png" width="60px" alt="KapilSareen" /></a>
   <a href="https://github.com/krishnavbajoria02"><img src="https://github.com/krishnavbajoria02.png" width="60px" alt="krishnavbajoria02" /></a>
@@ -195,6 +214,7 @@ That's it. Your work could help someone get in next year.
   <a href="https://github.com/SammanSarkar"><img src="https://github.com/SammanSarkar.png" width="60px" alt="SammanSarkar" /></a>
   <a href="https://github.com/shravanngoswamii"><img src="https://github.com/shravanngoswamii.png" width="60px" alt="shravanngoswamii" /></a>
   <a href="https://github.com/taoerman"><img src="https://github.com/taoerman.png" width="60px" alt="taoerman" /></a>
+  <a href="https://github.com/ThatDeparted2061"><img src="https://github.com/ThatDeparted2061.png" width="60px" alt="ThatDeparted2061" /></a>
   <a href="https://github.com/utk4r-sh"><img src="https://github.com/utk4r-sh.png" width="60px" alt="utk4r-sh" /></a>
   <a href="https://github.com/vanshksingh"><img src="https://github.com/vanshksingh.png" width="60px" alt="vanshksingh" /></a>
   <a href="https://github.com/VidhuSarwal"><img src="https://github.com/VidhuSarwal.png" width="60px" alt="VidhuSarwal" /></a>
